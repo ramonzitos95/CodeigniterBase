@@ -43,10 +43,14 @@ class LoginAdm extends CI_Controller
                 $this->session->set_userdata("usuario_logado", $usuario);
                 echo $usuario . '<br>';
                 echo "Administrador logado com sucesso";
-                //$this->load->view('formsuccess');
             } else {
                 redirect('login');
             }
         }
+    }
+
+    public function cadastrar()
+    {
+
     }
 }

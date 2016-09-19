@@ -12,8 +12,11 @@
                 <input type="password" name="senha" class="form-control">
             </div>
             <div class="form-group">
-                <label>Data de Cadastro</label>
-                <input type="date" name="datacadastro" class="form-control" value="<?php echo date('y-m-s')?>">
+                <p></p><label>Tipo de usuário</label></p><br>
+                <label>Colaborador</label><br>
+                <input type="radio" name="tipousuario" value="col"><br>
+                <label>Aluno</label><br>
+                <input type="radio" name="tipousuario" value="alu">
             </div>
 
             <input type="submit" value="Cadastrar" class="btn btn-default">

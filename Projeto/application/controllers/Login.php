@@ -65,17 +65,25 @@ class Login extends CI_Controller
     function ValidaCadastro()
     {
         $this->load->model('Login_model');
-        //Adicionando a variaveis o que veio do formulário
+        //Adicionando a variaveis o que veio do
+        $data = date('yyyy-mm-dd');
+
+        $tipousuario = $this->input->post('tipousuario');
         $dadosAluno = array(
             'usuario' => $this->input->post('usuario'),
             'senha' => $this->input->post('senha'),
-            'datacadastro' => $this->input->post('datacadastro')
+            'datacadastro' => $data
         );
 
         $this->form_validation->set_rules('usuario', 'Username', 'required');
         $this->form_validation->set_rules('senha', 'Password', 'required');
-        $this->form_validation->set_rules('datacadastro', 'Data', 'required');
-        $cadastrado = $this->Login_model->CadastrarAluno($dadosAluno);
+
+        //Cadastrando aluno ou colaborador
+        if($tipousuario == 'alu') {
+            $cadastrado = $this->Login_model->CadastrarAluno($dadosAluno);
+        } elseif($tipousuario == 'col') {
+            $cadastrado = $this->Login_model->CadastrarColaborador($dadosAluno);
+        }
 
         if ($this->form_validation->run() == FALSE) {
             echo validation_errors();
@@ -83,6 +91,14 @@ class Login extends CI_Controller
 
             if ($cadastrado) {
                 echo "Dados gravados com sucesso";
+                $cadastrarDadosRestantes = "<script> confirm('Desejas continuar cadastrando as informações restantes de usuário?')</script>";
+
+                if ($cadastrarDadosRestantes)
+                {
+                    $this->load->view('Pessoa/cadastrarPessoa_view');
+                }else{
+                    redirect('login/Cadastrar');
+                }
             } else {
                 redirect('login/Cadastrar');
             }
@@ -96,5 +112,6 @@ class Login extends CI_Controller
         session_unset();
         redirect('Login');
     }
-
 }
+
+
