@@ -92,16 +92,16 @@ class Login extends CI_Controller
             if ($cadastrado) {
                 echo "Dados gravados com sucesso";
                 $this->load->view('Pessoa/cadastrarPessoa_view');
-//                     echo("<script>
-//                     var resposta = (confirm('Desejas continuar cadastrando as informações restantes de usuário?'))
-//                     if (resposta == true){
-//                        document.write('<?php echo redirect("login"); ');
-//                     }
-//                     else
-//                     {
-//
-//                     }
-//                </script>");
+                    echo("<script>
+                    var resposta = (confirm('Desejas continuar cadastrando as informações restantes de usuário?'))
+                    if (resposta == true){
+                       window.location = 'http://localhost/CodeigniterBase/Projeto/Pessoa'; //Será redirecionado para o restante do cadastro
+                    }
+                    else
+                    {
+                       window.location = 'http://localhost/CodeigniterBase/Projeto/login';
+                    }
+               </script>");
 
 
             } else {

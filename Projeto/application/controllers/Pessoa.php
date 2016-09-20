@@ -12,6 +12,11 @@ class Pessoa extends CI_Controller
         $this->load->model('Pessoa_model');
     }
 
+    function index()
+    {
+        $this->load->view('Pessoa/cadastrarPessoa_view');
+    }
+
     function cadastro()
     {
         $turma = $this->input->post('turma');

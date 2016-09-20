@@ -19,6 +19,6 @@
 	</div>
 	<a href="view/desenvolvedores.html" target="blank" class="desenvolv">Desenvolvedores</a>
     <script src="<?php echo base_url('assets/js/bootstrap.js');?>"></script>
-    <script src="<?php echo base_url('assets/js/npm.js');?>"></script>
+	<script src="<?php echo base_url('assets/js/jquery-3.1.0.min.js');?>"></script>
 </html>
 
