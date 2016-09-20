@@ -79,9 +79,9 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('senha', 'Password', 'required');
 
         //Cadastrando aluno ou colaborador
-        if($tipousuario == 'alu') {
+        if ($tipousuario == 'alu') {
             $cadastrado = $this->Login_model->CadastrarAluno($dadosAluno);
-        } elseif($tipousuario == 'col') {
+        } elseif ($tipousuario == 'col') {
             $cadastrado = $this->Login_model->CadastrarColaborador($dadosAluno);
         }
 
@@ -91,14 +91,19 @@ class Login extends CI_Controller
 
             if ($cadastrado) {
                 echo "Dados gravados com sucesso";
-                $cadastrarDadosRestantes = "<script> confirm('Desejas continuar cadastrando as informações restantes de usuário?')</script>";
+                $this->load->view('Pessoa/cadastrarPessoa_view');
+//                     echo("<script>
+//                     var resposta = (confirm('Desejas continuar cadastrando as informações restantes de usuário?'))
+//                     if (resposta == true){
+//                        document.write('<?php echo redirect("login"); ');
+//                     }
+//                     else
+//                     {
+//
+//                     }
+//                </script>");
 
-                if ($cadastrarDadosRestantes)
-                {
-                    $this->load->view('Pessoa/cadastrarPessoa_view');
-                }else{
-                    redirect('login/Cadastrar');
-                }
+
             } else {
                 redirect('login/Cadastrar');
             }

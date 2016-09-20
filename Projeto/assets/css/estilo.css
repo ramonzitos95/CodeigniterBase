@@ -10,12 +10,12 @@
 	height:80%;
 	bottom: auto;
 	/* Altura mínima para IE */
-	background-image: url(../img/cab4.jpg); /* Aqui vai a mesma imagem que usamos acima */
-	background-size:100% 100%; /* Imagem ocupando toda largura e altura da div */
-	-webkit-background-size: 100% 100%;
-	-o-background-size: 100% 100%;
-	-khtml-background-size: 100% 100%;
-	-moz-background-size: 100% 100%;
+	background-image: url(../img/cab4.jpg);
+	background-size:100% 100%;
+	/*-webkit-background-size: 100% 100%;*/
+	/*-o-background-size: 100% 100%;*/
+	/*-khtml-background-size: 100% 100%;*/
+	/*-moz-background-size: 100% 100%;*/
 	background-repeat: no-repeat;
 }
 
