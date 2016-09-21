@@ -44,6 +44,7 @@ class LoginAdm extends CI_Controller
                 echo $usuario . '<br>';
                 echo "Administrador logado com sucesso";
             } else {
+                var_dump($logado);
                 redirect('login');
             }
         }

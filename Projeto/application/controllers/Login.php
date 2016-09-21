@@ -30,8 +30,6 @@ class Login extends CI_Controller
         $usuario = $this->input->post('usuario');
         $senha = $this->input->post('senha');
 
-        //echo $nome. ' - '. $senha;
-
         //Regras de validação
 
         $this->form_validation->set_rules('usuario', 'Username', 'required');
@@ -40,7 +38,7 @@ class Login extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('welcome_message');
+            var_dump($logado);
         } else {
             if ($logado) { //se foi logado
                 $this->session->set_userdata("usuario_logado", $usuario);
