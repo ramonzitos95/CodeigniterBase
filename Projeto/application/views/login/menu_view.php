@@ -1,4 +1,5 @@
-<?php $this->load->view('uteis/cabecalho'); ?>
+<?php $this->load->view('uteis/cabecalho');
+?>
     <div class="container-fluid">
         <nav class="navbar navbar-default">
             <div class="container-fluid">

@@ -28,7 +28,7 @@ class Login extends CI_Controller
 
 
         $usuario = $this->input->post('usuario');
-        $senha = $this->input->post('senha');
+        $senha = md5($this->input->post('senha'));
 
         //Regras de validação
 
@@ -37,15 +37,17 @@ class Login extends CI_Controller
         $logado = $this->Login_model->logarSistema($usuario, $senha); //Adicionando a variavel logado a função que carrega o login
 
 
+
         if ($this->form_validation->run() == FALSE) {
-            var_dump($logado);
+
         } else {
-            if ($logado) { //se foi logado
+            if (isset($logado['idaluno']) AND isset($logado['usuario'])) { //se foi logado
+                $id = $logado['idaluno'];
+                $this->session->set_userdata("id", $id);
                 $this->session->set_userdata("usuario_logado", $usuario);
-                echo $usuario . '<br>';
                 $this->load->view('login/menu_view');
-                //$this->load->view('formsuccess');
             } else {
+                echo ("<script>alert('Usuário ou senha inválidos, você será redirecionado')</script>");
                 redirect('login');
             }
         }
@@ -69,7 +71,7 @@ class Login extends CI_Controller
         $tipousuario = $this->input->post('tipousuario');
         $dadosAluno = array(
             'usuario' => $this->input->post('usuario'),
-            'senha' => $this->input->post('senha'),
+            'senha' => md5($this->input->post('senha')),
             'datacadastro' => $data
         );
 
@@ -88,7 +90,6 @@ class Login extends CI_Controller
         } else {
 
             if ($cadastrado) {
-                echo "Dados gravados com sucesso";
                 $this->load->view('Pessoa/cadastrarPessoa_view');
                     echo("<script>
                     var resposta = (confirm('Desejas continuar cadastrando as informações restantes de usuário?'))
@@ -100,7 +101,6 @@ class Login extends CI_Controller
                        window.location = 'http://localhost/CodeigniterBase/Projeto/login';
                     }
                </script>");
-
 
             } else {
                 redirect('login/Cadastrar');

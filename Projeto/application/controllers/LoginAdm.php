@@ -25,7 +25,7 @@ class LoginAdm extends CI_Controller
 
 
         $usuario = $this->input->post('usuario');
-        $senha = $this->input->post('senha');
+        $senha = md5($this->input->post('senha'));
 
         //echo $nome. ' - '. $senha;
 
@@ -40,11 +40,12 @@ class LoginAdm extends CI_Controller
             $this->load->view('welcome_message');
         } else {
             if ($logado) { //se foi logado
-                $this->session->set_userdata("usuario_logado", $usuario);
-                echo $usuario . '<br>';
-                echo "Administrador logado com sucesso";
-            } else {
                 var_dump($logado);
+                $this->session->set_userdata("usuario_logado", $usuario);
+                $this->session->set_userdata("id", $usuario);
+                echo $usuario . '<br>';
+
+            } else {
                 redirect('login');
             }
         }
