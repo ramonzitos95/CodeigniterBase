@@ -9,16 +9,23 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="<?php echo base_url('http://code.jquery.com/jquery-latest.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery-3.1.0.min.js');?>"></script>
 </head>
 <body class="imagemIndex">
-	<div class="row-fluid col-md-4 col-sm-4">
-		<p class="lead">
+	<div class="row-fluid col-sm-offset-1">
+
 			<?php
+                echo 'Horário Atual:';
 				date_default_timezone_set('America/Sao_Paulo');
 				$date = date('Y-m-d H:i');
-				echo $date;
+                $nome = $this->session->userdata('usuario_logado');
+				echo '<div class="text-primary">' . $date . '</div>';
+
+                echo '<div class="col-sm-offset-10 text-info">' . 'Usuário Logado: '. $nome. '</div>';
 			?>
-		</p>
+
 	</div>
 	
 

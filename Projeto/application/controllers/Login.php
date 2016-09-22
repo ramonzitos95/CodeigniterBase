@@ -45,7 +45,7 @@ class Login extends CI_Controller
                 $id = $logado['idaluno'];
                 $this->session->set_userdata("id", $id);
                 $this->session->set_userdata("usuario_logado", $usuario);
-                $this->load->view('login/menu_view');
+                redirect('menu');
             } else {
                 echo ("<script>alert('Usuário ou senha inválidos, você será redirecionado')</script>");
                 redirect('login');

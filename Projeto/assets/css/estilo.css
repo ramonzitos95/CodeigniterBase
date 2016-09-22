@@ -4,23 +4,20 @@
 }*/	
 
 .imagemIndex{
-    width:80%; /* Largura fixa para a div */
-	min-height:80%; /* Altura mínima */
-	height:auto !important; /* Altura ajustável de acordo com o conteúdo */
-	height:80%;
-	bottom: auto;
+	height:100%;
+	width:100%;
+	position: fixed;
 	/* Altura mínima para IE */
 	background-image: url(../img/cab4.jpg);
-	background-size:100% 100%;
-	/*-webkit-background-size: 100% 100%;*/
-	/*-o-background-size: 100% 100%;*/
-	/*-khtml-background-size: 100% 100%;*/
+	/*background-repeat: no-repeat;*/
 	/*-moz-background-size: 100% 100%;*/
-	background-repeat: no-repeat;
+	/*-webkit-background-size: 100% 100%;*/
 }
 
 .rodape{
 	bottom: 0px;
 	left: 0px;
 	position: fixed;
+	text-align: center;
+	left: 50%;
 }
