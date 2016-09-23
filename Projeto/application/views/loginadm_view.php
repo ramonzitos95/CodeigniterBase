@@ -12,6 +12,7 @@
                 <label>Senha</label>
                 <input type="password" name="senha" class="form-control">
             </div>
+                <input type="hidden" value="colaborador" name="tipousuario">
             <input type="submit" value="Logar" class="btn btn-default" onclick="confirmar()">
 
         </form>

@@ -37,7 +37,14 @@ class Pessoa extends CI_Controller
         $disciplinaextra = $this->input->post('extra');
         $naturalidade = $this->input->post('naturalidade');
         $matricula = $this->input->post('matricula');
-
+        //Verificando o tipo de usuário para gravar o atributo na tabela
+        $tipousuario = $this->session->userdata('tipousuario');
+        $id = $this->session->userdata('id');
+        if($tipousuario == "aluno"){
+            $idUsuarioAluno = $id;
+        } elseif ($tipousuario == "colaborador"){
+            $idUsuarioColaborador = $id;
+        }
         $dadosPessoa = array(
             'turma_turmaid' => $turma,
             'colaborador_idcolaborador' => 1,
@@ -81,7 +88,7 @@ class Pessoa extends CI_Controller
         {
             if($foiCadastradoPessoa)
             {
-                echo ("<script>alert('Usuário foi cadastrado com sucesso')</script>");
+                echo ("<script>alert('Usuário: ' + $nome + ' foi cadastrado com sucesso' + ' do tipo ' + $tipousuario)</script>");
                 redirect('login');
             }
             else

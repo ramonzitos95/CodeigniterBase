@@ -29,7 +29,7 @@ class Login extends CI_Controller
 
         $usuario = $this->input->post('usuario');
         $senha = md5($this->input->post('senha'));
-
+        $tipousuario = $this->input->post('tipousuario');
         //Regras de validação
 
         $this->form_validation->set_rules('usuario', 'Username', 'required');
@@ -45,6 +45,7 @@ class Login extends CI_Controller
                 $id = $logado['idaluno'];
                 $this->session->set_userdata("id", $id);
                 $this->session->set_userdata("usuario_logado", $usuario);
+                $this->session->set_userdata("tipo_usuario", $tipousuario);
                 redirect('menu');
             } else {
                 echo ("<script>alert('Usuário ou senha inválidos, você será redirecionado')</script>");

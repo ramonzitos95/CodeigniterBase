@@ -26,7 +26,7 @@ class LoginAdm extends CI_Controller
 
         $usuario = $this->input->post('usuario');
         $senha = md5($this->input->post('senha'));
-
+        $tipousuario = $this->input->post('tipousuario');
         //echo $nome. ' - '. $senha;
 
         //Regras de validação
@@ -40,9 +40,9 @@ class LoginAdm extends CI_Controller
             $this->load->view('welcome_message');
         } else {
             if ($logado) { //se foi logado
-                var_dump($logado);
                 $this->session->set_userdata("usuario_logado", $usuario);
                 $this->session->set_userdata("id", $usuario);
+                $this->session->set_userdata("tipo_usuario", $tipousuario);
                 echo $usuario . '<br>';
 
             } else {
