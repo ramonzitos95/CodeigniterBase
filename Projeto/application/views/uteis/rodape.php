@@ -16,7 +16,9 @@
             </footer>
 
 	</div>
-	<a href="view/desenvolvedores.html" target="blank" class="desenvolv">Desenvolvedores</a>
+    <div class="rodape">
+	    <a href="view/desenvolvedores.html" target="blank" class="desenvolv">Desenvolvedores</a>
+    </div>
     <script src="<?php echo base_url('assets/js/bootstrap.js');?>"></script>
 	<script src="<?php echo base_url('assets/js/npm.js');?>"></script>
 </html>

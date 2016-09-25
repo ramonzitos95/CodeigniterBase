@@ -19,7 +19,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Curso <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="../cadastros/curso.php">Cadastrar</a></li>
+                                <li><a href="<?php echo base_url('Curso'); ?>">Cadastrar</a></li>
                                 <li><a href="../../controller/listas/listarCursos.php">Listar Cursos</a></li>
                                 <li><a href="../../view/colaborador/buscarCursos.php">Editar Curso</a></li>
                             </ul>
@@ -46,7 +46,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Administrador <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Cadastrar Usuários</a></li>
+                                <li><a href="<?php echo base_url('login/cadastrar'); ?>">Cadastrar Usuários</a></li>
                             </ul>
                         </li>
                         <li><a href="sobre.php">Sobre</a></li>

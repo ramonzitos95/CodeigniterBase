@@ -43,6 +43,7 @@ class LoginAdm extends CI_Controller
                 $this->session->set_userdata("usuario_logado", $usuario);
                 $this->session->set_userdata("id", $usuario);
                 $this->session->set_userdata("tipo_usuario", $tipousuario);
+                redirect('menu');
                 echo $usuario . '<br>';
 
             } else {

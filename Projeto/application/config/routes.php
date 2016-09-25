@@ -56,3 +56,4 @@ $route['login'] = 'login';
 $route['loginAdm'] = 'LoginAdm';
 $route['Pessoa'] = 'Pessoa';
 $routes['menu'] = 'Menu';
+$route['Curso'] = 'Curso';
