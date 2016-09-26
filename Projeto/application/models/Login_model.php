@@ -17,6 +17,7 @@ class Login_model extends CI_Model
     {
         //Chamada o próprio construtor
         parent::__construct();
+        $this->load->model('Turma_model');
     }
 
     //Validando o login do aluno

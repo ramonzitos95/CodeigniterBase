@@ -10,6 +10,7 @@ class Pessoa extends CI_Controller
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         $this->load->model('Pessoa_model');
+        $this->load->model('Turma_model');
     }
 
     function index()

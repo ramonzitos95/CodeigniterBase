@@ -7,8 +7,8 @@ class Curso extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('form_validation');
-        $this->load->helper('form');
+
+        $this->load->helper(array('form', 'url'));
     }
 
     public function index()
@@ -20,6 +20,8 @@ class Curso extends CI_Controller
     {
         $this->load->model('Curso_model');
 
+        $this->load->library('form_validation');
+
         $cursonome = $this->input->post('cursonome');
         $cargahoraria = ($this->input->post('cargahoraria'));
         $ementa = $this->input->post('ementa');
@@ -27,6 +29,11 @@ class Curso extends CI_Controller
         $modocurso = $this->input->post('modocurso');
         $origem = $this->input->post('origem');
         $situacao = $this->input->post('situacao');
+        if($situacao == "ativo"){
+            $situacao = true;
+        }elseif ($situacao == "inativo"){
+            $situacao = false;
+        }
 
         $dadosCurso = array(
             'cursonome' => $cursonome,
@@ -35,26 +42,17 @@ class Curso extends CI_Controller
             'bibliografia' => $bibliografia,
             'modocurso' => $modocurso,
             'origemcurso' => $origem,
-            'situacao' => true
+            'situacao' => $situacao
         );
 
-        $this->form_validation->set_rules('cursome', 'required');
-        $this->form_validation->set_rules('cargahoraria', 'required');
-        $this->form_validation->set_rules('ementa', 'required');
-        $this->form_validation->set_rules('situacao', 'required');
         $cadastrado = $this->Curso_model->CadastrarCurso($dadosCurso);
 
 
-        if ($this->form_validation->run() == FALSE) {
+        if ($cadastrado) {
             var_dump($dadosCurso);
-            Echo "Houve erros no formulário";
+            redirect('Curso');
         } else {
-
-            if ($cadastrado) {
-                redirect('Menu');
-            } else {
-
-            }
+            $this->load->view('Erro_view');
         }
 
 

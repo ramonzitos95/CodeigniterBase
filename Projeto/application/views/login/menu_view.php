@@ -25,12 +25,15 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Disciplina<span class="caret"></span></a>
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Turma<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Cadastrar Disciplina</a></li>
-                                <li><a href="#">Listar Disciplinas</a></li>
-                                <li><a href=".#">Editar Disciplina</a></li>
-                                <li><a href="#">Enviar Por Email</a></li>
+                                <li><a href="<?php echo base_url('Turma'); ?>">Cadastrar</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Disciplina <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?php echo base_url('Disciplina'); ?>">Cadastrar</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">

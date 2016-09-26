@@ -9,7 +9,7 @@ class Login extends CI_Controller
         parent::__construct();
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
-        $this->load->model('Login_model'); //carregando o model
+        $this->load->model(array('Login_model','Turma_model', 'Auditoria_model')); //carregando o model
     }
 
     public function index()
@@ -46,6 +46,17 @@ class Login extends CI_Controller
                 $this->session->set_userdata("id", $id);
                 $this->session->set_userdata("usuario_logado", $usuario);
                 $this->session->set_userdata("tipo_usuario", $tipousuario);
+
+                //gravando login na auditoria
+                $textoAuditoriaLogin = "Usuário " . $usuario . " logou no sistema";
+
+                $dadosLogin = array(
+                    'loghora' => time(),
+                    'logdata' => date('y-m-d'),
+                    'logtexto' => $textoAuditoriaLogin
+                );
+                $this->Auditoria_model->logar($dadosLogin);
+
                 redirect('menu');
             } else {
                 echo ("<script>alert('Usuário ou senha inválidos, você será redirecionado')</script>");

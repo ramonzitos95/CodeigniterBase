@@ -7,7 +7,7 @@
  * Date: 17/09/2016
  * Time: 21:08
  */
-class Curso_model extends CI_Model
+class Auditoria_model extends CI_Model
 {
     public $title;
     public $content;
@@ -19,21 +19,13 @@ class Curso_model extends CI_Model
         parent::__construct();
     }
 
-    public function CadastrarCurso($dados)//Função para cadastrar Pessoa
+    public function logar($dados)//Função para cadastrar Pessoa
     {
-        If ($this->db->insert("curso", $dados)){
+        If ($this->db->insert("auditoria", $dados)){
             return true;
         } else {
             return false;
         }
     }
 
-    public function CadastrarAlunoCurso($dados)
-    {
-        If ($this->db->insert("alunocurso", $dados)){
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
