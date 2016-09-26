@@ -9,6 +9,7 @@ class Curso extends CI_Controller
         parent::__construct();
 
         $this->load->helper(array('form', 'url'));
+        $this->load->model('Auditoria_model');
     }
 
     public function index()
@@ -49,12 +50,22 @@ class Curso extends CI_Controller
 
 
         if ($cadastrado) {
-            var_dump($dadosCurso);
+            $textoLog = "Foi cadastrado o curso: " . $cursonome;
+            $this->gravandoLog($textoLog);
             redirect('Curso');
         } else {
             $this->load->view('Erro_view');
         }
 
+        function gravandoLog($texto)
+        {
+            $dadosLogin = array(
+                'loghora' => time(),
+                'logdata' => date('y-m-d'),
+                'logtexto' => $texto
+            );
+            $this->Auditoria_model->logar($dadosLogin);
+        }
 
     }
 }

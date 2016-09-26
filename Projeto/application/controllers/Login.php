@@ -50,12 +50,7 @@ class Login extends CI_Controller
                 //gravando login na auditoria
                 $textoAuditoriaLogin = "Usuário " . $usuario . " logou no sistema";
 
-                $dadosLogin = array(
-                    'loghora' => time(),
-                    'logdata' => date('y-m-d'),
-                    'logtexto' => $textoAuditoriaLogin
-                );
-                $this->Auditoria_model->logar($dadosLogin);
+                $this->gravandoLog($textoAuditoriaLogin);
 
                 redirect('menu');
             } else {
@@ -77,13 +72,15 @@ class Login extends CI_Controller
     function ValidaCadastro()
     {
         $this->load->model('Login_model');
-        //Adicionando a variaveis o que veio do
+        //Adicionando a variaveis o que veio do form
+        $usuario = $this->input->post('usuario');
+        $senha = md5($this->input->post('senha'));
         $data = date('yyyy-mm-dd');
 
         $tipousuario = $this->input->post('tipousuario');
         $dadosAluno = array(
-            'usuario' => $this->input->post('usuario'),
-            'senha' => md5($this->input->post('senha')),
+            'usuario' => $usuario,
+            'senha' => $senha,
             'datacadastro' => $data
         );
 
@@ -102,6 +99,10 @@ class Login extends CI_Controller
         } else {
 
             if ($cadastrado) {
+                //gravando cadastro de usuario no log
+                $textoAuditoria = "Foi cadastrado o usuário: " . $usuario;
+                $this->gravandoLog($textoAuditoria);
+
                 $this->load->view('Pessoa/cadastrarPessoa_view');
                     echo("<script>
                     var resposta = (confirm('Desejas continuar cadastrando as informações restantes de usuário?'))
@@ -126,6 +127,16 @@ class Login extends CI_Controller
         session_destroy();
         session_unset();
         redirect('Login');
+    }
+
+    function gravandoLog($texto)
+    {
+        $dadosLogin = array(
+            'loghora' => time(),
+            'logdata' => date('y-m-d'),
+            'logtexto' => $texto
+        );
+        $this->Auditoria_model->logar($dadosLogin);
     }
 }
 

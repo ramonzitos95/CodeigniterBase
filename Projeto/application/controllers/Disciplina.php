@@ -8,6 +8,7 @@ class Disciplina extends CI_Controller {
         parent::__construct();
         $this->load->helper('form');
         $this->load->library('form_validation');
+        $this->load->model('Auditoria_model');
     }
 
     public function index(){
@@ -54,6 +55,10 @@ class Disciplina extends CI_Controller {
         $cadastrado = $this->Disciplina_model->CadastrarDisciplina($dadosDisciplina);
 
         if($cadastrado){
+            //Gravando o log na base
+            $textoLog = "Foi cadastrado a disciplina: " . $nome;
+            $this->gravandoLog($textoLog);
+
             redirect('Disciplina');
         }else{
             $this->load->view('Error_view');
@@ -63,5 +68,15 @@ class Disciplina extends CI_Controller {
     function formatarData($data){
         $rData = implode("-", array_reverse(explode("/", trim($data))));
         return $rData;
+    }
+
+    function gravandoLog($texto)
+    {
+        $dadosLogin = array(
+            'loghora' => time(),
+            'logdata' => date('y-m-d'),
+            'logtexto' => $texto
+        );
+        $this->Auditoria_model->logar($dadosLogin);
     }
 }

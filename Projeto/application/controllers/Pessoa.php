@@ -89,6 +89,8 @@ class Pessoa extends CI_Controller
         {
             if($foiCadastradoPessoa)
             {
+                $textoLog = "Foi cadastrado a pessoa: " . $nome . " do tipo " . $tipousuario;
+                $this->gravandoLog($textoLog);
                 echo ("<script>alert('Usuário: ' + $nome + ' foi cadastrado com sucesso' + ' do tipo ' + $tipousuario)</script>");
                 redirect('login');
             }
@@ -98,6 +100,16 @@ class Pessoa extends CI_Controller
             }
         }
 
+    }
+
+    function gravandoLog($texto)
+    {
+        $dadosLogin = array(
+            'loghora' => time(),
+            'logdata' => date('y-m-d'),
+            'logtexto' => $texto
+        );
+        $this->Auditoria_model->logar($dadosLogin);
     }
 
 

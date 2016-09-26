@@ -25,10 +25,22 @@ class Turma extends CI_Controller {
         $cadastrado = $this->Turma_model->cadastrarTurma($dadosTurma);
 
         if($cadastrado){
+            $textoLog = "Foi cadastrado a turma: " + $nome;
+            $this->gravandoLog($textoLog);
             redirect('Turma');
         }else{
             $this->load->view('Erro_view');
         }
 
     }
+    function gravandoLog($texto)
+    {
+        $dadosLogin = array(
+            'loghora' => time(),
+            'logdata' => date('y-m-d'),
+            'logtexto' => $texto
+        );
+        $this->Auditoria_model->logar($dadosLogin);
+    }
+
 }
