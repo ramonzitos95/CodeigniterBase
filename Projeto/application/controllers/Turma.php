@@ -43,4 +43,5 @@ class Turma extends CI_Controller {
         $this->Auditoria_model->logar($dadosLogin);
     }
 
+
 }
