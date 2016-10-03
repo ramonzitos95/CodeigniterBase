@@ -20,8 +20,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Curso <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?php echo base_url('Curso'); ?>">Cadastrar</a></li>
-                                <li><a href="../../controller/listas/listarCursos.php">Listar Cursos</a></li>
-                                <li><a href="../../view/colaborador/buscarCursos.php">Editar Curso</a></li>
+                                <li><a href="<?php echo base_url('Curso/Consultar')?>">Listar Cursos</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">

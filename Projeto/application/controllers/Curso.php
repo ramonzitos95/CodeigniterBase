@@ -8,7 +8,7 @@ class Curso extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->helper(array('form', 'url'));
+        $this->load->helper(array('form'));
         $this->load->model('Auditoria_model');
     }
 
@@ -67,5 +67,12 @@ class Curso extends CI_Controller
             $this->Auditoria_model->logar($dadosLogin);
         }
 
+    }
+
+    public function Consultar()
+    {
+        //$this->load->view('uteis/cabecalho');
+        $this->load->view('Curso/consultaCurso_view');
+        //$this->load>view('uteis/rodape');
     }
 }

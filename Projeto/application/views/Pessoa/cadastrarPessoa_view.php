@@ -1,5 +1,6 @@
 <?php $this->load->view('uteis/cabecalho');
     $arrayTurma = $this->Turma_model->listaTurmas();
+    $tamanho = count($arrayTurma);
 ?>
 
 <div class="container-fluid" xmlns="http://www.w3.org/1999/html">
@@ -10,10 +11,9 @@
         <form action="<?php echo base_url('Pessoa/cadastro'); ?>" method="post">
             <div class="form-group col-md-6">
                 <label>Turma</label>
-                <select name="turmaid">
-                    <option></option>
-                    <?php foreach ($arrayTurma as $turma): ?>
-                        <?php '<option value"'.$turma['turmaid'].'">'.$array['$turmanome'].'</option>'; ?>
+                <select name="turma">
+                    <?php foreach ($arrayTurma as $key => $value): ?>
+                        <?php echo "<option value=\"$key\" >$value</option>"; ?>
                     <?php endforeach; ?>
                 </select>
             </div>
