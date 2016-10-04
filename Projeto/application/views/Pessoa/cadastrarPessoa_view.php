@@ -1,6 +1,5 @@
 <?php $this->load->view('uteis/cabecalho');
     $arrayTurma = $this->Turma_model->listaTurmas();
-    $tamanho = count($arrayTurma);
 ?>
 
 <div class="container-fluid" xmlns="http://www.w3.org/1999/html">

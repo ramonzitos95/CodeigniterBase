@@ -59,3 +59,4 @@ $routes['menu'] = 'Menu';
 $route['Curso'] = 'Curso';
 $route['turma'] = 'Turma';
 $route['disciplina'] = 'Disciplina';
+$route['grade'] = 'Grade';

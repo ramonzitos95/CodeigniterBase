@@ -36,4 +36,10 @@ class Curso_model extends CI_Model
             return false;
         }
     }
+
+    public function listaCursos()
+    {
+        $turmas = $this->db->get("curso")->row_array('cursoid', 'cursonome');
+        return $turmas;
+    }
 }

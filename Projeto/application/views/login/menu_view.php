@@ -38,11 +38,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Grade <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Cadastrar</a></li>
-                                <li><a href="#">Lista Grades</a></li>
-                                <li><a href="#">Editar Grades</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Inativar Grade</a></li>
+                                <li><a href="<?php echo base_url('Grade')?>">Cadastrar</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">

@@ -27,4 +27,11 @@ class Disciplina_model extends CI_Model
             return false;
         }
     }
+
+    public function listaDisciplinas()
+    {
+        $turmas = $this->db->get("disciplina")->row_array();
+        return $turmas;
+    }
+
 }

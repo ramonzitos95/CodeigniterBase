@@ -103,8 +103,6 @@ CREATE TABLE grade (
   curso_cursoid INTEGER UNSIGNED NOT NULL,
   pessoa_turma_turmaid INTEGER UNSIGNED NOT NULL,
   usuario_Alunoid INTEGER UNSIGNED NOT NULL,
-  alunoid INTEGER UNSIGNED NULL,
-  cursoid INTEGER UNSIGNED NULL,
   semestreano VARCHAR(50) NULL,
   cargahoraria VARCHAR(20) NULL,
   diasemana VARCHAR(20) NULL,
