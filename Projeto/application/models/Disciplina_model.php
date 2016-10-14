@@ -30,8 +30,7 @@ class Disciplina_model extends CI_Model
 
     public function listaDisciplinas()
     {
-        $turmas = $this->db->get("disciplina")->row_array();
-        return $turmas;
+        return $this->db->get("disciplina")->result();
     }
 
 }

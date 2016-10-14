@@ -30,7 +30,7 @@ class Turma_model extends CI_Model
 
     public function listaTurmas()
     {
-        $turmas = $this->db->get("turma")->row_array();
-        return $turmas;
+        return $this->db->get("turma")->result();
+
     }
 }
