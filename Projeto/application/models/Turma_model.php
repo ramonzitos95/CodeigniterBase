@@ -21,7 +21,7 @@ class Turma_model extends CI_Model
 
     public function cadastrarTurma($dados)//Função para cadastrar Pessoa
     {
-        If ($this->db->insert("turma", $dados)){
+        If ($this->db->insert("turma", $dadoss)){
             return true;
         } else {
             return false;

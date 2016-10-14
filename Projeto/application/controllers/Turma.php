@@ -6,6 +6,7 @@ class Turma extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Turma_model', 'Auditoria_model');
     }
 
     public function index(){
@@ -14,11 +15,10 @@ class Turma extends CI_Controller {
 
 	public function validaTurma()
     {
-        $this->load->model('Turma_model');
-
         $nome = $this->input->post('nome');
 
         $dadosTurma = array(
+            'dados' => 'exemplo',
             'turmanome' => $nome
         );
 

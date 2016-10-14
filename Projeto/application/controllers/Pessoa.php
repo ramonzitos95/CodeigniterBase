@@ -15,7 +15,8 @@ class Pessoa extends CI_Controller
 
     function index()
     {
-        $this->load->view('Pessoa/cadastrarPessoa_view');
+        $dados['turmas'] = $this->Turma_model->listaTurmas();
+        $this->load->view('Pessoa/cadastrarPessoa_view', $dados);
     }
 
     function cadastro()

@@ -2,19 +2,49 @@
     $arrayTurma = $this->Turma_model->listaTurmas();
 ?>
 
+<script>
+
+    $(function(){
+        $("#btn_cadastro").change(function(){
+            var cep = $('#cep').val();
+            cep = cep.replace('-', '');
+            if (cep == '') {
+                alert('Informe o CEP antes de continuar');
+                $('#cep').focus();
+                return false;
+            }
+            $('#btn_consulta').html ('Aguarde...');
+            $.post('http://localhost/CodeigniterBase/Projeto/Cep/Consulta',
+                {
+                    cep : cep
+                },
+                function(dados){
+                    $('#endereco').val(dados.logradouro);
+                    $('#bairro').val(dados.bairro);
+                    $('#cidade').val(dados.localidade);
+                    $('#estado').val(dados.uf);
+                    $('#btn_cadastro').html('Consultar');
+                }, 'json');
+        });
+    });
+
+
+</script>
+
 <div class="container-fluid" xmlns="http://www.w3.org/1999/html">
 
     <div class="row-fluid">
         <?php echo validation_errors(); ?>
         <h2>Cadastro de Pessoas</h2>
         <form action="<?php echo base_url('Pessoa/cadastro'); ?>" method="post">
-            <div class="form-group col-md-6">
-                <label>Turma</label>
-                <select name="turma">
-                    <?php foreach ($arrayTurma as $key => $value): ?>
-                        <?php echo "<option value=\"$key\" >$value</option>"; ?>
-                    <?php endforeach; ?>
-                </select>
+            <div class="form-group col-md-12">
+                <label for="turma">Turma</label>
+                <?php
+                $arrayTurma = array('' => 'Escolha');
+                foreach ($turmas as $turma)
+                    $arrayTurma[$turma->turmaid] = $turma->turmanome;
+                echo form_dropdown('turma', $arrayTurma);
+                ?>
             </div>
             <div class="form-group col-md-6">
                 <label>Nome</label>
@@ -58,7 +88,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label>CEP</label>
-                <input type="text" name="cep" class="form-control">
+                <input type="text" name="cep" id="cep" class="form-control">
             </div>
             <div class="form-group col-sm-4">
                 <label>Estado Civil</label> <br>
@@ -92,7 +122,7 @@
                 <input type="text" name="matricula" class="form-control">
             </div>
             <div class="col-md-6 ">
-                <input type="submit" value="Cadastrar" class="btn btn-default">
+                <input type="submit" value="Cadastrar" class="btn btn-default" name="btn_cadastro">
             </div>
         </form>
         <div class="col-md-6">

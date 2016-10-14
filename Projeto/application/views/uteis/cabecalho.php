@@ -6,11 +6,19 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-theme.min.css'); ?>" >
+    <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery-mask.js'); ?>"></script>
+
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="<?php echo base_url('assets/js/bootstrap.min.js');?>" ></script>
+    <script>
+        $(document).ready(function () {
+            $("#cep").mask("99999-999");
+        })
+    </script>
 
-    <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
+
 </head>
 <body class="imagemIndex">
 	<div class="row-fluid col-sm-offset-1">
