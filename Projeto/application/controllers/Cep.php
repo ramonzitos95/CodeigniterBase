@@ -8,10 +8,7 @@ class Cep extends CI_Controller {
         parent::__construct();
     }
 
-    public function index(){
-
-	}
-
+	//Consulta o CEP para retornar aos devidos campos
     public function consulta(){
 
         $cep = $this->input->post('cep');
@@ -20,5 +17,11 @@ class Cep extends CI_Controller {
 
         echo $this->curl->consulta($cep);
 
+    }
+
+    function getCidades($id){
+        $this->load->Model('cidades_model');
+
+        $cidades = $this->cidades_model->getCidades($id);
     }
 }

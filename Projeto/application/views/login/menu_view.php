@@ -1,4 +1,4 @@
-
+<?php $this->load->view('uteis/cabecalho'); ?>
     <div class="container-fluid">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -45,6 +45,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Administrador <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?php echo base_url('login/cadastrar'); ?>">Cadastrar Usuários</a></li>
+                                <li><a href="<?php echo base_url('Pessoa'); ?>">Cadastrar Pessoas</a></li>
                             </ul>
                         </li>
                         <li><a href="sobre.php">Sobre</a></li>
@@ -53,3 +54,4 @@
             </div><!-- /.container-fluid -->
         </nav>
     </div>
+<?php  $this->load->view('uteis/rodape'); ?>

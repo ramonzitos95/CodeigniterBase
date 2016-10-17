@@ -1,5 +1,5 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<?php
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
 
 /**
  * Created by PhpStorm.
@@ -13,15 +13,9 @@ class Turma_model extends CI_Model
     public $content;
     public $date;
 
-    public function __construct()
-    {
-        //Chamada o próprio construtor
-        parent::__construct();
-    }
-
     public function cadastrarTurma($dados)//Função para cadastrar Pessoa
     {
-        If ($this->db->insert("turma", $dadoss)){
+        If ($this->db->insert("turma", $dados)){
             return true;
         } else {
             return false;

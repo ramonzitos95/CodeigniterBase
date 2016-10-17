@@ -8,17 +8,18 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-theme.min.css'); ?>" >
     <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
     <script src="<?php echo base_url('assets/js/jquery-mask.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/bootstrap.js');?>"></script>
 
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="<?php echo base_url('assets/js/bootstrap.min.js');?>" ></script>
-    <script>
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#cep").mask("99999-999");
+            $("#telefone").mask("(99)9999-9999");
+            $("#celular").mask("(99)9999-9999");
+            $("#datanascimento").mask("99/99/9999");
+            $("#rg").mask("9.999.999");
+            $("#cpf").mask("999.999.999-99")
         })
     </script>
-
-
 </head>
 <body class="imagemIndex">
 	<div class="row-fluid col-sm-offset-1">

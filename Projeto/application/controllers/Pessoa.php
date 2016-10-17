@@ -11,11 +11,14 @@ class Pessoa extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model('Pessoa_model');
         $this->load->model('Turma_model');
+        $this->load->model('Auditoria_model');
+        $this->load->model('cidades_model');
     }
 
     function index()
     {
         $dados['turmas'] = $this->Turma_model->listaTurmas();
+        $dados['estados'] = $this->cidades_model->getEstados();
         $this->load->view('Pessoa/cadastrarPessoa_view', $dados);
     }
 
@@ -49,8 +52,8 @@ class Pessoa extends CI_Controller
         }
         $dadosPessoa = array(
             'turma_turmaid' => $turma,
-            'colaborador_idcolaborador' => 1,
-            'aluno_idaluno' => 1,
+            'colaborador_idcolaborador' => $idUsuarioColaborador,
+            'aluno_idaluno' => $idUsuarioAluno,
             'nome' => $nome,
             'cpf' => $cpf,
             'rg' => $rg,
