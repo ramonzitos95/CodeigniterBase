@@ -57,22 +57,24 @@ class Curso extends CI_Controller
             $this->load->view('Erro_view');
         }
 
-        function gravandoLog($texto)
-        {
-            $dadosLogin = array(
-                'loghora' => time(),
-                'logdata' => date('y-m-d'),
-                'logtexto' => $texto
-            );
-            $this->Auditoria_model->logar($dadosLogin);
-        }
 
+
+    }
+
+    public function gravandoLog($texto)
+    {
+        $dadosLogin = array(
+            'loghora' => time(),
+            'logdata' => date('y-m-d'),
+            'logtexto' => $texto
+        );
+        $this->Auditoria_model->logar($dadosLogin);
     }
 
     public function Consultar()
     {
-        //$this->load->view('uteis/cabecalho');
-        $this->load->view('Curso/consultaCurso_view');
-        //$this->load>view('uteis/rodape');
+        $this->load->model('Curso_model');
+        $dados['cursos'] = $this->Curso_model->listaCursos();
+        $this->load->view('Curso/consultaCurso_view', $dados);
     }
 }

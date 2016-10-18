@@ -23,7 +23,7 @@
                 if (cadastrar) {
                     window.location('<?php echo base_url('Login/Cadastrar')?>');
                 } else {
-                    window.location('<?php echo base_url('LoginAdm/Logar')?>');
+                    window.location('<?php echo base_url('Menu')?>');
                 }
         }
     </script>
