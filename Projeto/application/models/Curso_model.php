@@ -40,6 +40,26 @@ class Curso_model extends CI_Model
     public function listaCursos()
     {
         return $this->db->get("curso")->result();
+    }
 
+    public function DeletarCurso($id)
+    {
+        If($id != null){
+            $this->db->where('cursoid', $id);
+            $this->db->delete("curso");
+            return $id;
+        } else {
+            Return False;
+        }
+
+    }
+
+    public function RetornaNomeCurso($idcurso)
+    {
+        //Busca com condição
+        $query = $this->db->get('curso', array('cursoid' => $idcurso));
+
+        //Row_object() retorna direto o objeto curso e não array
+        return $query->row_object();
     }
 }

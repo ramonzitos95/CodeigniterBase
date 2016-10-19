@@ -24,7 +24,7 @@
             <table class="table table-hover table-striped">
                 <thead>
                 <tr class="cabecalho">
-                    <th colspan="1">Nome</th>
+                    <th colspan="1">Curso</th>
                     <th colspan="1">Carga Horaria</th>
                     <th colspan="1">Modo do Cuso</th>
                     <th colspan="1">Origem</th>
@@ -51,9 +51,9 @@
                             <input type="hidden" value="' . $id . '" name="id">
                             <input class="btn btn-default" type="submit" value="Editar Curso">
                         </form>
-                        <td colspan="1"><form action="../../controller/Eventos/CursoServlet.php" method="POST">
-                            <input class="btn btn-danger" type="submit" value="Excluir Curso" onclick="Excluir" ">
-                        </form></td>
+                        <td colspan="1">
+                            <a href="<?php echo base_url('Curso/DeletarCurso/'. $curso->cursoid); ?>" class="btn btn-large btn-primary">Excluir Curso</a>
+                        </td>
                 </tr>
                 <?php } ?>
         </tbody></table>

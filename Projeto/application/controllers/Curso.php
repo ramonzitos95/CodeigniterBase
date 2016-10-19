@@ -10,6 +10,7 @@ class Curso extends CI_Controller
 
         $this->load->helper(array('form'));
         $this->load->model('Auditoria_model');
+        $this->load->library(array('form_validation', 'Auditoria'));
     }
 
     public function index()
@@ -76,5 +77,24 @@ class Curso extends CI_Controller
         $this->load->model('Curso_model');
         $dados['cursos'] = $this->Curso_model->listaCursos();
         $this->load->view('Curso/consultaCurso_view', $dados);
+    }
+
+    public function DeletarCurso($id)
+    {
+        $this->load->model('Curso_model');
+        $deletado = $this->Curso_model->DeletarCurso($id);
+        $dados = array(
+            'id' => $id
+        );
+        if($deletado == false){
+            echo base_url('Menu');
+        } else {
+            //Gravando log
+            $nome = $this->Curso_model->RetornaNomeCurso($deletado);
+            $texto = "O curso " .  $nome->cursonome . " foi deletado";
+            //$this->Auditoria->gravandoLog($texto);
+            echo '<script>alert("Curso excluido com sucesso")</script>';
+            redirect('Menu');
+        }
     }
 }
