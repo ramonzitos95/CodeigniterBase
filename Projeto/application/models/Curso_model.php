@@ -54,6 +54,11 @@ class Curso_model extends CI_Model
 
     }
 
+    public function listaCurso($id){
+        $this->db->where('cursoid', $id);
+        return $this->db->get('curso')->result();
+    }
+
     public function RetornaNomeCurso($idcurso)
     {
         //Busca com condição
@@ -65,7 +70,8 @@ class Curso_model extends CI_Model
 
     public function atualizaCurso($dados){
         if($dados != null){
-            $this->dbn-where("curso");
+            $this->dbn-where("cursoid", $dados['cursoid']);
+            return $this->db->update('curso');
         }
     }
 }

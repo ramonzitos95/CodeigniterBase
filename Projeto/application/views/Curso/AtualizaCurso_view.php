@@ -6,10 +6,10 @@
         <?php echo validation_errors(); ?>
         <h2>Atualização do Curso</h2>
         <form action="<?php echo base_url('Curso/AtualizaCurso'); ?>" method="post">
-            <input type="hidden" value="<?php $cursoid; ?>" />
+            <input type="hidden" value="<?php var_dump($dados)?>" />
             <div class="form-group col-md-12">
                 <label>Nome do Curso</label><br>
-                <input type="text" name="cursonome" class="form-control" required>
+                <input type="text" name="cursonome" value="<?php echo $dados->cursonome; ?>" class="form-control" required>
             </div>
             <div class="form-group col-md-12">
                 <label>Carga Horária</label><br>

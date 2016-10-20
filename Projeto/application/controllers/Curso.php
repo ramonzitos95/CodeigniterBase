@@ -11,6 +11,7 @@ class Curso extends CI_Controller
         $this->load->helper(array('form'));
         $this->load->model('Auditoria_model');
         $this->load->library(array('form_validation', 'Auditoria'));
+        $this->load->model('Curso_model');
     }
 
     public function index()
@@ -20,7 +21,8 @@ class Curso extends CI_Controller
 
     public function Alteracao($cursoid)
     {
-        $this->load->View('Curso/AtualizaCurso_view', $cursoid);
+        $dados['dados'] = $this->Curso_model->listaCurso($cursoid);
+        $this->load->View('Curso/AtualizaCurso_view', $dados);
     }
 
     public function validaCurso()
