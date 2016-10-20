@@ -62,4 +62,10 @@ class Curso_model extends CI_Model
         //Row_object() retorna direto o objeto curso e não array
         return $query->row_object();
     }
+
+    public function atualizaCurso($dados){
+        if($dados != null){
+            $this->dbn-where("curso");
+        }
+    }
 }

@@ -5,15 +5,17 @@
 
 <div class="container-fluid">
     <h3>Buscar Cursos:</h3>
-    <div class="form-inline form-group">
-        <label>Buscar por: </label>
-        <select id="atributo" class="form-control" name="atributo" required>
-            <option value="id">Id</option>
-            <option value="nome">Nome</option>
+    <div class="form-inline form-group" action="<?php echo base_url('Curso/ConsultaFiltro'); ?>">
+        <form id="form">
+            <label>Buscar por: </label>
+            <select id="atributo" class="form-control" name="operacao" required>
+                <option value="id">Id</option>
+                <option value="nome">Nome</option>
 
-        </select>
-        <input id="valorEve" type="text" class="form-control" name="valorEve"/>
-        <button class="btn btn-primary" name="btn" onclick="carregarConsulta(); ">Consultar</button>
+            </select>
+            <input id="valorEve" type="text" class="form-control" name="dado"/>
+            <button type="submit" class="btn btn-primary" name="btn" onclick="">Consultar</button>
+        </form>
     </div>
 </div>
 <div class="row-fluid">
@@ -33,7 +35,7 @@
                     <th colspan="1"></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="conteudo">
                 <?php foreach($cursos as $curso) {
                     If($curso->situacao == true){
                         $txtSituacao = "Ativo";
@@ -47,10 +49,9 @@
                         <td colspan="1"><?php echo $curso->modocurso; ?></td>
                         <td colspan="1"><?php echo $curso->origemcurso; ?></td>
                         <td colspan="1"><?php echo $txtSituacao ?></td>
-                    <td colspan="1"><form action="editarCurso.php" method="POST">
-                            <input type="hidden" value="' . $id . '" name="id">
-                            <input class="btn btn-default" type="submit" value="Editar Curso">
-                        </form>
+                        <td colspan="1">
+                            <a href="<?php echo base_url('Curso/Alteracao/'. $curso->cursoid); ?>" class="btn btn-large btn-primary">Editar Curso</a>
+                        </td>
                         <td colspan="1">
                             <a href="<?php echo base_url('Curso/DeletarCurso/'. $curso->cursoid); ?>" class="btn btn-large btn-primary">Excluir Curso</a>
                         </td>
@@ -64,17 +65,22 @@
 </div>
 
 <script>
-    function carregarConsulta() {
-        $.post("../../controller/consultas/ConsultaAjaxCurso.php",
-            {
-                atributo: document.getElementById('atributo').value,
-                valor: document.getElementById('valorEve').value,
-            },
-            function (data) {
-                $("#div1").html(data);
-            });
-    }
-    ;
+
+    $("#form").submit(
+        function(){
+            $.ajax({
+                url: "/CodeigniterBase/Projeto/Curso/ConsultaFiltro",
+                type: "post",
+                data: $(this).serialize(),
+                beforeSend: function(){
+                    $("#conteudo").html("Carregando...");
+                },
+                success: function(resposta){
+                    $("#conteudo").html(resposta);
+                }
+            })
+        }
+    )
 
 </script>
 
