@@ -21,7 +21,7 @@ class Curso_model extends CI_Model
 
     public function CadastrarCurso($dados)//Função para cadastrar Pessoa
     {
-        If ($this->db->insert("curso", $dados)){
+        If ($this->db->insert("curso", $dados)) {
             return true;
         } else {
             return false;
@@ -30,7 +30,7 @@ class Curso_model extends CI_Model
 
     public function CadastrarAlunoCurso($dados)
     {
-        If ($this->db->insert("alunocurso", $dados)){
+        If ($this->db->insert("alunocurso", $dados)) {
             return true;
         } else {
             return false;
@@ -44,7 +44,7 @@ class Curso_model extends CI_Model
 
     public function DeletarCurso($id)
     {
-        If($id != null){
+        If ($id != null) {
             $this->db->where('cursoid', $id);
             $this->db->delete("curso");
             return $id;
@@ -54,9 +54,27 @@ class Curso_model extends CI_Model
 
     }
 
-    public function listaCurso($id){
+    public function listaCurso($id)
+    {
         $this->db->where('cursoid', $id);
         return $this->db->get('curso')->result();
+    }
+
+    //Consulta com filtro
+    public function listaCursoFiltro($dadosFiltro)
+    {
+        $operacao = $dadosFiltro['operacao'];
+        $dado = $dadosFiltro['dado'];
+        echo $operacao.$dado;
+
+        if($operacao == 'nome'){
+            $this->db->like('cursonome', "$dado");
+            echo $this->db->last_query();
+            return $this->db->get('curso')->result();
+        }
+
+//        $this->db->where('cursoid', $dado);
+//        return $this->db->get('curso')->result();
     }
 
     public function RetornaNomeCurso($idcurso)
@@ -68,10 +86,16 @@ class Curso_model extends CI_Model
         return $query->row_object();
     }
 
-    public function atualizaCurso($dados){
-        if($dados != null){
-            $this->dbn-where("cursoid", $dados['cursoid']);
-            return $this->db->update('curso');
+    public function atualizaCurso($dados)
+    {
+        $this->db->where("cursoid", $dados['cursoid']);
+        $Atualizado = $this->db->update("curso", $dados);
+        if ($Atualizado) {
+            echo "Atualizado";
+            return true;
+        } else {
+            return false;
         }
+
     }
 }

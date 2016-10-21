@@ -21,7 +21,7 @@ class Curso extends CI_Controller
 
     public function Alteracao($cursoid)
     {
-        $dados['dados'] = $this->Curso_model->listaCurso($cursoid);
+        $dados['curso'] = $this->Curso_model->listaCurso($cursoid);
         $this->load->View('Curso/AtualizaCurso_view', $dados);
     }
 
@@ -90,10 +90,15 @@ class Curso extends CI_Controller
     {
         $operacao = $this->input->post('operacao');
         $dado = $this->input->post('dados');
-        $this->load->model('Curso_model');
-        $dados['cursos'] = $this->Curso_model->listaCursos();
 
-        $this->load->view('Curso/ConsultaCursoFiltro_view');
+        $dadosFiltro = array(
+            'operacao' => $operacao,
+            'dado' => $dado
+        );
+        $this->load->model('Curso_model');
+        $dados['cursos'] = $this->Curso_model->listaCursoFiltro($dadosFiltro);
+
+        $this->load->view('Curso/ConsultaCursoFiltro_view', $dados);
     }
 
     public function DeletarCurso($id)
@@ -119,6 +124,7 @@ class Curso extends CI_Controller
 
         $this->load->model('Curso_model');
 
+        $cursoid = $this->input->post('cursoid');
         $cursonome = $this->input->post('cursonome');
         $cargahoraria = ($this->input->post('cargahoraria'));
         $ementa = $this->input->post('ementa');
@@ -133,6 +139,7 @@ class Curso extends CI_Controller
         }
 
         $dadosCurso = array(
+            'cursoid' => $cursoid,
             'cursonome' => $cursonome,
             'cargahoraria' => $cargahoraria,
             'ementa' => $ementa,
@@ -142,7 +149,11 @@ class Curso extends CI_Controller
             'situacao' => $situacao
         );
 
-        $atualizado = $this->Curso_model->atualizaCurso();
+        $atualizado = $this->Curso_model->atualizaCurso($dadosCurso);
+        if($atualizado){
+            echo '<script>alert("O curso foi atualizado com sucesso");</script>';
+            redirect('Menu');
+        }
     }
 
 }
