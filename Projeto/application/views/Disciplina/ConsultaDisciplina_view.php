@@ -4,8 +4,8 @@ $this->load->view('login/menu_unico');
 ?>
 
     <div class="container-fluid">
-        <h3>Buscar Cursos:</h3>
-        <div class="form-inline form-group" action="<?php echo base_url('Curso/ConsultaFiltro'); ?>">
+        <h3 class="text-capitalize">Buscar Disciplinas:</h3>
+        <div class="form-inline form-group" action="<?php echo base_url('Disciplina/Consulta'); ?>">
             <form id="form">
                 <label>Buscar por: </label>
                 <select id="atributo" class="form-control" name="operacao" required>
@@ -24,36 +24,36 @@ $this->load->view('login/menu_unico');
                 <table class="table table-hover table-striped">
                     <thead>
                     <tr class="cabecalho">
-                        <th colspan="1">Curso</th>
+                        <th colspan="1">Disciplina</th>
+                        <th colspan="1">Professor</th>
                         <th colspan="1">Carga Horaria</th>
-                        <th colspan="1">Modo do Cuso</th>
-                        <th colspan="1">Origem</th>
+                        <th colspan="1">Modalidade</th>
                         <th colspan="1">Situaçao</th>
                         <th colspan="1"></th>
                         <th colspan="1"></th>
                     </tr>
                     </thead>
                     <tbody id="conteudo">
-                    <?php foreach ($cursos as $curso) {
-                        If ($curso->situacao == true) {
+                    <?php foreach ($disciplinas as $d) {
+                        If ($d->situacaodisciplina == true) {
                             $txtSituacao = "Ativo";
                         } else {
                             $txtSituacao = "Inativo";
                         }
                         ?>
                         <tr>
-                            <td colspan="1"><?php echo $curso->cursonome; ?></td>
-                            <td colspan="1"><?php echo $curso->cargahoraria; ?></td>
-                            <td colspan="1"><?php echo $curso->modocurso; ?></td>
-                            <td colspan="1"><?php echo $curso->origemcurso; ?></td>
+                            <td colspan="1"><?php echo $d->nome; ?></td>
+                            <td colspan="1"><?php echo $d->professor; ?></td>
+                            <td colspan="1"><?php echo $d->cargahoraria; ?></td>
+                            <td colspan="1"><?php echo $d->modalidade; ?></td>
                             <td colspan="1"><?php echo $txtSituacao ?></td>
                             <td colspan="1">
-                                <a href="<?php echo base_url('Curso/Alteracao/' . $curso->cursoid); ?>"
-                                   class="btn btn-large btn-primary">Editar Curso</a>
+                                <a href="<?php echo base_url('Disciplina/Alteracao/' . $d->disciplinaid); ?>"
+                                   class="btn btn-large btn-primary">Editar Disciplina</a>
                             </td>
                             <td colspan="1">
-                                <a href="<?php echo base_url('Curso/DeletarCurso/' . $curso->cursoid); ?>"
-                                   class="btn btn-large btn-primary">Excluir Curso</a>
+                                <a href="<?php echo base_url('Disciplina/DeletarDisciplina/' . $d->disciplinaid); ?>"
+                                   class="btn btn-large btn-primary">Excluir Disciplina</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -68,8 +68,7 @@ $this->load->view('login/menu_unico');
     <script>
 
         $("#form").submit(
-            function (e) {
-                e.preventDefault();
+            function () {
                 $.ajax({
                     url: "/CodeigniterBase/Projeto/Curso/ConsultaFiltro",
                     type: "post",

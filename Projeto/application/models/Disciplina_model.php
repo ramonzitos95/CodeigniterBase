@@ -33,4 +33,29 @@ class Disciplina_model extends CI_Model
         return $this->db->get("disciplina")->result();
     }
 
+    public function DeletarDisciplina($id)
+    {
+        $this->db->where("disciplinaid", $id);
+        $deletado = $this->db->delete("disciplina");
+        if($deletado){
+            return $id;
+        } else {
+            return false;
+        }
+    }
+
+    public function RetornaNomeDisciplina($idcurso)
+    {
+        //Busca com condição
+        $query = $this->db->get('curso', array('cursoid' => $idcurso));
+
+        //Row_object() retorna direto o objeto curso e não array
+        return $query->row_object();
+    }
+
+    public function listaDisciplina($id)
+    {
+        $this->db->where('disciplinaid', $id);
+        return $this->db->get('disciplina')->result();
+    }
 }

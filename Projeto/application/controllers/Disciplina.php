@@ -9,6 +9,7 @@ class Disciplina extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->model('Auditoria_model');
+        $this->load->model('Disciplina_model');
     }
 
     public function index(){
@@ -17,7 +18,6 @@ class Disciplina extends CI_Controller {
 
 	public function validaDisciplina()
     {
-        $this->load->model('Disciplina_model');
         $nome = $this->input->post('nome');
         $professor = $this->input->post('professor');
         $cargahoraria = $this->input->post('cargahoraria');
@@ -65,12 +65,12 @@ class Disciplina extends CI_Controller {
         }
     }
 
-    function formatarData($data){
+    public function formatarData($data){
         $rData = implode("-", array_reverse(explode("/", trim($data))));
         return $rData;
     }
 
-    function gravandoLog($texto)
+    public function gravandoLog($texto)
     {
         $dadosLogin = array(
             'loghora' => time(),
@@ -79,4 +79,33 @@ class Disciplina extends CI_Controller {
         );
         $this->Auditoria_model->logar($dadosLogin);
     }
+
+    public function Consulta()
+    {
+        $dados['disciplinas'] = $this->Disciplina_model->listaDisciplinas();;
+        $this->load->view('Disciplina/ConsultaDisciplina_view', $dados);
+    }
+
+    public function DeletarDisciplina($id)
+    {
+        $deletado = $this->Disciplina_model->DeletarDisciplina($id);
+        if($deletado == false){
+            echo base_url('Menu');
+        } else {
+            //Gravando log
+            $nome = $this->Disciplina_model->RetornaNomeDisciplina($id);
+            $texto = "O curso " .  $nome->cursonome . " foi deletado";
+            //$this->Auditoria_model->gravandoLod($texto);
+            echo '<script>alert("Curso excluido com sucesso")</script>';
+            redirect('Disciplina/Consulta');
+        }
+    }
+
+    public function Alteracao($id)
+    {
+        $dados['disciplina'] = $this->Disciplina_model->listaDisciplina($id);
+        $this->load->View('Disciplina/AtualizarDisciplina_view', $dados);
+    }
+
+
 }

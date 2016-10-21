@@ -89,8 +89,9 @@ class Curso extends CI_Controller
     public function ConsultaFiltro()
     {
         $operacao = $this->input->post('operacao');
-        $dado = $this->input->post('dados');
+        $dado = $this->input->post('dado');
 
+//        var_dump($this->input->post);
         $dadosFiltro = array(
             'operacao' => $operacao,
             'dado' => $dado

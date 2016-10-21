@@ -60,22 +60,25 @@ class Curso_model extends CI_Model
         return $this->db->get('curso')->result();
     }
 
+
     //Consulta com filtro
     public function listaCursoFiltro($dadosFiltro)
     {
         $operacao = $dadosFiltro['operacao'];
         $dado = $dadosFiltro['dado'];
-        echo $operacao.$dado;
 
         if($operacao == 'nome'){
-            $this->db->like('cursonome', "$dado");
-            echo $this->db->last_query();
-            return $this->db->get('curso')->result();
+
+            $this->db->like('cursonome', "%$dado%");
+            $query = $this->db->get('curso')->get();
+            var_dump($query);
+            //die();
+            return $query;
+
         }
 
-//        $this->db->where('cursoid', $dado);
-//        return $this->db->get('curso')->result();
     }
+
 
     public function RetornaNomeCurso($idcurso)
     {

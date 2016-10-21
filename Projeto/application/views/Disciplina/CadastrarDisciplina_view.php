@@ -1,5 +1,4 @@
 <?php
-    $this->load->view('uteis/cabecalho');
     $this->load->view('login/menu_view');
 ?>
 
