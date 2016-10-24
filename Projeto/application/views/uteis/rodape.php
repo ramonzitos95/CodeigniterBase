@@ -1,5 +1,5 @@
 
-	<div class="rodape">
+	<div class="rodape row-fluid">
             <footer>
 
                 <address>
@@ -16,7 +16,7 @@
             </footer>
 
 	</div>
-    <div class="rodape">
+    <div class="rodape row-fluid">
 	    <a href="view/desenvolvedores.html" target="blank" class="desenvolv">Desenvolvedores</a>
     </div>
 </html>

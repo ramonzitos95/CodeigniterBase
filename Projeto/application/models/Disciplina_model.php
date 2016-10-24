@@ -58,4 +58,15 @@ class Disciplina_model extends CI_Model
         $this->db->where('disciplinaid', $id);
         return $this->db->get('disciplina')->result();
     }
+
+    public function AtualizarDisciplina($dados)
+    {
+        $this->db->where("disciplinaid", $dados['disciplinaid']);
+        $Atualizado = $this->db->update("disciplina", $dados);
+        if ($Atualizado) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -1,18 +1,75 @@
-<?php $this->load->view('uteis/cabecalho'); ?>
-<div class="container-fluid" xmlns="http://www.w3.org/1999/html">
+<?php
+$this->load->view('uteis/cabecalho');
+$this->load->view('login/menu_unico');
+?>
+
+    <div class="container-fluid">
+        <h3>Buscar Turmas:</h3>
+        <div class="form-inline form-group" action="<?php echo base_url('Curso/ConsultaFiltro'); ?>">
+            <form id="form">
+                <label>Buscar por: </label>
+                <select id="atributo" class="form-control" name="operacao" required>
+                    <option value="nome">Nome</option>
+                </select>
+                <input id="valorEve" type="text" class="form-control" name="dado"/>
+                <button type="submit" class="btn btn-primary">Consultar</button>
+            </form>
+        </div>
+    </div>
     <div class="row-fluid">
-        <h2>Cadastro de Turma</h2>
-        <form action="<?php echo base_url('Turma/validaTurma'); ?>" method="post">
-            <div class="form-group">
-                <label>Nome da Turma</label>
-                <input type="text" name="nome" class="form-control" required>
+        <div id="div1">
+
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr class="cabecalho">
+                        <th colspan="8">Turma</th>
+                    </tr>
+                    </thead>
+                    <tbody id="conteudo">
+                    <?php foreach ($turmas as $turma) {
+                        ?>
+                        <tr>
+                            <td colspan="8"><?php echo $turma->turmanome; ?></td>
+                            <td colspan="1">
+                                <a href="<?php echo base_url('Turma/Alteracao/' . $turma->turmaid); ?>"
+                                   class="btn btn-large btn-primary">Editar turma</a>
+                            </td>
+                            <td colspan="1">
+                                <a href="<?php echo base_url('Turma/DeletarTurma/' . $turma->turmaid); ?>"
+                                   class="btn btn-large btn-primary">Excluir Turma</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
             </div>
 
-            <input type="submit" value="Cadastrar" class="btn btn-default">
 
-        </form>
+        </div>
     </div>
-    <div>
-        <a href="<?php echo base_url('Login'); ?>" class="alert-dismissable">Logout</a>
-    </div>
-</div>
+
+    <script>
+
+        $("#form").submit(
+            function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "/CodeigniterBase/Projeto/Curso/ConsultaFiltro",
+                    type: "post",
+                    data: $(this).serialize(),
+                    beforeSend: function () {
+                        $("#conteudo").html("Carregando...");
+                    },
+                    success: function (resposta) {
+                        $("#conteudo").html(resposta);
+                        console.log(resposta);
+                    }
+                })
+            }
+        )
+
+    </script>
+
+<?php $this->load->view('uteis/rodape'); ?>

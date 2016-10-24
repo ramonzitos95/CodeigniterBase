@@ -94,7 +94,6 @@ class Curso_model extends CI_Model
         $this->db->where("cursoid", $dados['cursoid']);
         $Atualizado = $this->db->update("curso", $dados);
         if ($Atualizado) {
-            echo "Atualizado";
             return true;
         } else {
             return false;

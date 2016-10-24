@@ -14,7 +14,8 @@
     <div class="row-fluid">
         <?php echo validation_errors(); ?>
         <h2>Atualização da Disciplina de <?php echo $disciplina[0]->nome; ?></h2>
-        <form action="<?php echo base_url('Disciplina/validaDisciplina'); ?>" method="post">
+        <form action="<?php echo base_url('Disciplina/AtualizarDisciplina'); ?>" method="post">
+            <input type="hidden" name="disciplinaid" value="<?php echo $disciplina[0]->disciplinaid; ?>">
             <div class="form-group">
                 <label>Nome Disciplina</label>
                 <input type="text" name="nome" value="<?php echo $disciplina[0]->nome; ?>" class="form-control">
@@ -60,7 +61,7 @@
                 <input type="text" name="modalidade" value="<?php echo $disciplina[0]->modalidade; ?>" class="form-control">
             </div>
             <div class="">
-                <input type="submit" value="Cadastrar" class="btn btn-default">
+                <input type="submit" value="Atualizar" class="btn btn-default">
             </div>
         </form>
         <div class="col-md-6">

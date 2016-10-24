@@ -39,7 +39,7 @@ class Turma extends CI_Controller
 
     }
 
-    function gravandoLog($texto)
+    public function gravandoLog($texto)
     {
         $dadosLogin = array(
             'loghora' => time(),
@@ -48,6 +48,29 @@ class Turma extends CI_Controller
         );
         $this->Auditoria_model->logar($dadosLogin);
     }
+
+    public function Consulta()
+    {
+        $dados['turmas'] = $this->Turma_model->listaTurmas();;
+        $this->load->view('Turma/turma_view', $dados);
+    }
+
+    public function DeletarTurma($id)
+    {
+        $deletado = $this->Turma_model->DeletarTurma($id);
+
+        if($deletado == false){
+            echo base_url('Menu');
+        } else {
+            //Gravando log
+            $nome = $this->Turma_model->RetornaNomeTurma($deletado);
+            $texto = "O curso " .  $nome->cursonome . " foi deletado";
+            //$this->Auditoria->gravandoLog($texto);
+            echo '<script>alert("Curso excluido com sucesso")</script>';
+            redirect('Menu');
+        }
+    }
+
 
 
 }

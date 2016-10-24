@@ -107,5 +107,45 @@ class Disciplina extends CI_Controller {
         $this->load->View('Disciplina/AtualizarDisciplina_view', $dados);
     }
 
+    public function AtualizarDisciplina()
+    {
+        $disciplinaid = $this->input->post('disciplinaid');
+        $nome = $this->input->post('nome');
+        $professor = $this->input->post('professor');
+        $cargahoraria = $this->input->post('cargahoraria');
+        $datacadastro = $this->input->post('datacadastro');
+        $conceito = $this->input->post('conceito');
+        $ementa = $this->input->post('ementa');
+        $datainicio = $this->input->post('datainicio');
+        $situacao = $this->input->post('situacaodisciplina');
+        $universidade = $this->input->post('universidade');
+        $modalidade = $this->input->post('modalidade');
+
+        $dadosDisciplina = array(
+            'disciplinaid' => $disciplinaid,
+            'nome' => $nome,
+            'professor' => $professor,
+            'cargahoraria' => $cargahoraria,
+            'datacadastro' => $datacadastro,
+            'conceito' => $conceito,
+            'ementa' => $ementa,
+            'datainicio' => $datainicio,
+            'situacaodisciplina' => $situacao,
+            'universidade' => $universidade,
+            'modalidade' => $modalidade
+        );
+
+        $atualizado = $this->Disciplina_model->AtualizarDisciplina($dadosDisciplina);
+        if($atualizado){
+            echo '<script>alert("A disciplina foi atualizada com sucesso");</script>';
+            redirect('Menu');
+        } else
+        {
+            echo '<script>alert("Houveram erros na atualização dos dados!");</script>';
+            redirect('Menu');
+        }
+
+    }
+
 
 }
