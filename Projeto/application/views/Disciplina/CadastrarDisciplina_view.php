@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label>Data de Cadastro</label>
-                <input type="text" name="datacadastro" class="form-control">
+                <input type="date" name="datacadastro" class="form-control">
             </div>
             <div class="form-group col-md-12">
                 <label>Conceito</label>

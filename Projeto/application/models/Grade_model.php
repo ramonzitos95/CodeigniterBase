@@ -34,4 +34,34 @@ class Grade_model extends CI_Model
         return $this->db->get("grade")->result();
 
     }
+
+    public function DeletarGrade($id)
+    {
+        If ($id != null) {
+            $this->db->where('gradeid', $id);
+            $this->db->delete("grade");
+            return $id;
+        } else {
+            Return False;
+        }
+
+    }
+
+    public function listaCurso($id)
+    {
+        $this->db->where('gradeid', $id);
+        return $this->db->get('grade')->result();
+    }
+
+    public function AtualizarGrade($dados)
+    {
+        $this->db->where("gradeid", $dados['gradeid']);
+        $Atualizado = $this->db->update("grade", $dados);
+        if ($Atualizado) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }

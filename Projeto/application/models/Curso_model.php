@@ -68,12 +68,10 @@ class Curso_model extends CI_Model
         $dado = $dadosFiltro['dado'];
 
         if($operacao == 'nome'){
-
-            $this->db->like('cursonome', "%$dado%");
-            $query = $this->db->get('curso')->get();
-            var_dump($query);
-            //die();
-            return $query;
+            $this->db->select('*');
+            $this->db->from('curso');
+            $this->db->like('cursonome', $dado);
+            return $this->db->get()->result_array();
 
         }
 

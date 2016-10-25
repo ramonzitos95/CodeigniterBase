@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label>Data de Cadastro</label>
-                <input type="text" name="datacadastro" value="<?php echo $disciplina[0]->datacadastro; ?>" class="form-control">
+                <input type="text" name="datacadastro" value="<?php echo date('d/m/Y' , strtotime($disciplina[0]->datacadastro)); ?>" class="form-control">
             </div>
             <div class="form-group col-md-12">
                 <label>Conceito</label>
@@ -43,7 +43,7 @@
             </div>
             <div class="form-group">
                 <label>Data de Inicio</label>
-                <input type="date" name="datainicio" value="<?php echo $disciplina[0]->datainicio; ?>" class="form-control">
+                <input type="date" name="datainicio" value="<?php echo date('d/m/Y' , strtotime($disciplina[0]->datainicio)); ?>" class="form-control">
             </div>
             <div class="form-group">
                 <label>Situação</label><br>

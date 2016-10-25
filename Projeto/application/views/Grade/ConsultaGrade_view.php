@@ -4,7 +4,7 @@ $this->load->view('login/menu_unico');
 ?>
 
     <div class="container-fluid">
-        <h3>Buscar Turmas:</h3>
+        <h3>Buscar Grades:</h3>
         <div class="form-inline form-group" action="<?php echo base_url('Curso/ConsultaFiltro'); ?>">
             <form id="form">
                 <label>Buscar por: </label>
@@ -24,21 +24,34 @@ $this->load->view('login/menu_unico');
                 <table class="table table-hover table-striped">
                     <thead>
                     <tr class="cabecalho">
-                        <th colspan="8">Turma</th>
+                        <th colspan="1">Codigo da Grade</th>
+                        <th colspan="1">Semestre</th>
+                        <th colspan="1">carga horária</th>
+                        <th colspan="1">Dia da Semana</th>
+                        <th colspan="1">Data de Validade</th>
+                        <th colspan="1"></th>
+                        <th colspan="1"></th>
                     </tr>
                     </thead>
                     <tbody id="conteudo">
-                    <?php foreach ($turmas as $turma) {
+                    <?php foreach ($grades as $grade) {
+                        //$datavalidade = new DateTime($grade->datavalidade);
+                        //$datavalidade->toString();
                         ?>
+
                         <tr>
-                            <td colspan="8"><?php echo $turma->turmanome; ?></td>
+                            <td colspan="1"><?php echo $grade->gradeid; ?></td>
+                            <td colspan="1"><?php echo $grade->semestreano; ?></td>
+                            <td colspan="1"><?php echo $grade->cargahoraria; ?></td>
+                            <td colspan="1"><?php echo $grade->diasemana; ?></td>
+                            <td colspan="1"><?php echo $grade->datavalidade; ?></td>
                             <td colspan="1">
-                                <a href="<?php echo base_url('Turma/Alteracao/' . $turma->turmaid); ?>"
-                                   class="btn btn-large btn-primary col-md-3 col-sm-6" >Editar turma</a>
+                                <a href="<?php echo base_url('Grade/Alteracao/' . $grade->gradeid); ?>"
+                                   class="btn btn-large btn-primary">Editar Grade</a>
                             </td>
                             <td colspan="1">
-                                <a href="<?php echo base_url('Turma/DeletarTurma/' . $turma->turmaid); ?>"
-                                   class="btn btn-large btn-primary col-md-3 col-sm-6">Excluir Turma</a>
+                                <a href="<?php echo base_url('Grade/DeletarGrade/' . $grade->gradeid); ?>"
+                                   class="btn btn-large btn-primary">Excluir Grade</a>
                             </td>
                         </tr>
                     <?php } ?>

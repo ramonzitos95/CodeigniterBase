@@ -40,6 +40,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">Grade <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?php echo base_url('Grade')?>">Cadastrar</a></li>
+                                <li><a href="<?php echo base_url('Grade/Consultar')?>">Listar Grades</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
