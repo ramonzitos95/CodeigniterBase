@@ -69,4 +69,20 @@ class Disciplina_model extends CI_Model
             return false;
         }
     }
+
+    //Consulta com filtro
+    public function listaDisciplinaFiltro($dadosFiltro)
+    {
+        $operacao = $dadosFiltro['operacao'];
+        $dado = $dadosFiltro['dado'];
+
+        if($operacao == 'nome'){
+            $this->db->select('*');
+            $this->db->from('disciplina');
+            $this->db->like('nome', $dado);
+            return $this->db->get()->result_array();
+
+        }
+
+    }
 }

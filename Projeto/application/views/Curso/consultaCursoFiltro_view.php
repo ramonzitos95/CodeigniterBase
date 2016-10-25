@@ -1,5 +1,4 @@
 
-<?php var_dump($cursos);?>
 <?php foreach($cursos as $curso) {
     If($curso['situacao'] == true){
         $txtSituacao = "Ativo";

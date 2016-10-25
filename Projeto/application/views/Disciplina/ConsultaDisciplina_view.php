@@ -68,9 +68,10 @@ $this->load->view('login/menu_unico');
     <script>
 
         $("#form").submit(
-            function () {
+            function (e) {
+                e.preventDefault();
                 $.ajax({
-                    url: "/CodeigniterBase/Projeto/Curso/ConsultaFiltro",
+                    url: "/CodeigniterBase/Projeto/Disciplina/ConsultaFiltro",
                     type: "post",
                     data: $(this).serialize(),
                     beforeSend: function () {

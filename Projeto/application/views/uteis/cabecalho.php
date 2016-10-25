@@ -30,9 +30,16 @@
 				$date = date('Y-m-d H:i');
                 $nome = $this->session->userdata('usuario_logado');
 				echo '<div class="text-primary">' . $date . '</div>';
+                If($nome != null) {
+                    echo '<div class="col-sm-offset-10 text-info">' . 'Usuário Logado: ' . $nome . '</div>';
 
-                echo '<div class="col-sm-offset-10 text-info">' . 'Usuário Logado: '. $nome. '</div>';
 			?>
+
+            <a href="<?php echo base_url('login/Logout'); ?>" class="text-danger"> Logout </a>
+
+                <?php }?>
+
+
 
 	</div>
 	

@@ -147,5 +147,20 @@ class Disciplina extends CI_Controller {
 
     }
 
+    public function ConsultaFiltro()
+    {
+        $operacao = $this->input->post('operacao');
+        $dado = $this->input->post('dado');
+
+        $dadosFiltro = array(
+            'operacao' => $operacao,
+            'dado' => $dado
+        );
+        $this->load->model('Disciplina_model');
+        $dados['disciplinas'] = $this->Disciplina_model->listaDisciplinaFiltro($dadosFiltro);
+
+        $this->load->view('Disciplina/ConsultaDisciplinaFiltro_view', $dados);
+    }
+
 
 }

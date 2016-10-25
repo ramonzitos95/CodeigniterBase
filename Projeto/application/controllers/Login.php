@@ -52,6 +52,17 @@ class Login extends CI_Controller
 
                 $this->gravandoLog($textoAuditoriaLogin);
 
+                //Enviando email notificando que o usuário acessou o sistema
+                $de = $this->input->post('ramonss.bque@gmail.com', TRUE);        //CAPTURA O VALOR DA CAIXA DE TEXTO 'E-mail Remetente'
+                $para = $this->input->post('ramonss.bque@gmail.com', TRUE);    //CAPTURA O VALOR DA CAIXA DE TEXTO 'E-mail de Destino'
+                $msg = $this->input->post('txt_msg', TRUE);      //CAPTURA O VALOR DA CAIXA DE TEXTO 'Mensagem'
+                $this->load->library('email');                   //CARREGA A CLASSE EMAIL DENTRO DA LIBRARY DO FRAMEWORK
+                $this->email->from($de, 'Teste');                //ESPECIFICA O FROM(REMETENTE) DA MENSAGEM DENTRO DA CLASSE
+                $this->email->to($para);                         //ESPECIFICA O DESTINATÁRIO DA MENSAGEM DENTRO DA CLASSE
+                $this->email->subject('Teste de Email');         //ESPECIFICA O ASSUNTO DA MENSAGEM DENTRO DA CLASSE
+                $this->email->message($msg);	                 //ESPECIFICA O TEXTO DA MENSAGEM DENTRO DA CLASSE
+                $this->email->send();                            //AÇÃO QUE ENVIA O E-MAIL COM OS PARÂMETROS DEFINIDOS ANTERIORMENTE
+                echo ' <script> console.log("<?php $this->mail->print_debugger() ?>"); </script>';
                 redirect('menu');
             } else {
                 echo ("<script>alert('Usuário ou senha inválidos, você será redirecionado')</script>");
