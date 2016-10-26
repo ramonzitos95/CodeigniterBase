@@ -15,23 +15,25 @@ class LogArquivo
 {
 
 
-    public function gravar($texto)
-    {
-
-        //Variável arquivo armazena o nome e extensão do arquivo.
-
-        $arquivo = 'c:\\temp\\info.txt';
-
-        //Variável $fp armazena a conexão com o arquivo e o tipo de ação.
-
-        $fp = fopen($arquivo, "b");
-
-        fwrite($fp, $texto);
-        //Fecha o arquivo.
+    function gravaLog($conteudo){
+        $arquivo = 'C:\temp\teste2.txt';
+        if(!file_exists($arquivo))
+        {
+            echo "Arquivo não existe no diretório marcado";
+        }
+        else
+        {
+            $fp = fopen($arquivo, 'a');
+            fwrite($fp, $conteudo);
+        }
 
         fclose($fp);
-
     }
+
+
+    function lerArquivoLog(){
+
+
 
 
 }
