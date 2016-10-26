@@ -35,16 +35,36 @@ $this->load->view('login/menu_unico');
                     </thead>
                     <tbody id="conteudo">
                     <?php foreach ($grades as $grade) {
-                        //$datavalidade = new DateTime($grade->datavalidade);
-                        //$datavalidade->toString();
+                        if($grade->datavalidade == null){
+                            $dataformatada = '';
+                        }else{
+                            $dataformatada = date('d/m/Y', strtotime($grade->datavalidade));
+                        }
+
+                        if($grade->gradeid == null AND $grade->cargahoraria == null AND $grade->diasemana == null AND $grade->diasemana == null){
+                            $gradeid = '';
+                            $semestreano = '';
+                            $cargahoraria = '';
+                            $diasemana = '';
+                        }
+                        else
+                        {
+                            $gradeid = $grade->gradeid;
+                            $semestreano = $grade->semestreano;
+                            $cargahoraria = $grade->cargahoraria;
+                            $diasemana = $grade->diasemana;
+                        }
+
+                        $this->load->library('LogArquivo');
+                        $tihs->LogArquivo->gravar("TESTE");
                         ?>
 
                         <tr>
-                            <td colspan="1"><?php echo $grade->gradeid; ?></td>
-                            <td colspan="1"><?php echo $grade->semestreano; ?></td>
-                            <td colspan="1"><?php echo $grade->cargahoraria; ?></td>
-                            <td colspan="1"><?php echo $grade->diasemana; ?></td>
-                            <td colspan="1"><?php echo $grade->datavalidade; ?></td>
+                            <td colspan="1"><?php echo $gradeid; ?></td>
+                            <td colspan="1"><?php echo $semestreano; ?></td>
+                            <td colspan="1"><?php echo $cargahoraria; ?></td>
+                            <td colspan="1"><?php echo $diasemana; ?></td>
+                            <td colspan="1"><?php echo $dataformatada; ?></td>
                             <td colspan="1">
                                 <a href="<?php echo base_url('Grade/Alteracao/' . $grade->gradeid); ?>"
                                    class="btn btn-large btn-primary">Editar Grade</a>

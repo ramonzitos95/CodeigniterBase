@@ -52,7 +52,7 @@ class Turma extends CI_Controller
     public function Consulta()
     {
         $dados['turmas'] = $this->Turma_model->listaTurmas();;
-        $this->load->view('Turma/turma_view', $dados);
+        $this->load->view('Turma/ConsultaTurma_view', $dados);
     }
 
     public function DeletarTurma($id)
