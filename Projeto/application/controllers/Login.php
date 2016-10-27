@@ -8,7 +8,7 @@ class Login extends CI_Controller
     {
         parent::__construct();
         $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
+        $this->load->library(array('form_validation','Auditoria'));
         $this->load->model(array('Login_model','Turma_model', 'Auditoria_model')); //carregando o model
     }
 
@@ -52,7 +52,7 @@ class Login extends CI_Controller
                 $this->load->library('logarquivo');
                 echo $this->logarquivo->gravaLog($textoAuditoriaLogin);
                 echo $this->logarquivo->lerArquivoLog();
-                $this->gravandoLog($textoAuditoriaLogin);
+                echo $this->Auditoria->gravandolog($textoAuditoriaLogin);
 
                 //Enviando email notificando que o usuário acessou o sistema
                 $de = $this->input->post('ramonss.bque@gmail.com', TRUE);        //CAPTURA O VALOR DA CAIXA DE TEXTO 'E-mail Remetente'
@@ -114,7 +114,7 @@ class Login extends CI_Controller
             if ($cadastrado) {
                 //gravando cadastro de usuario no log
                 $textoAuditoria = "Foi cadastrado o usuário: " . $usuario;
-                $this->gravandoLog($textoAuditoria);
+                echo $this->Auditoria->gravandolog($texto);
 
                 $this->load->view('Pessoa/cadastrarPessoa_view');
                     echo("<script>
@@ -143,15 +143,6 @@ class Login extends CI_Controller
         redirect('Login');
     }
 
-    public function gravandoLog($texto)
-    {
-        $dadosLogin = array(
-            'loghora' => time(),
-            'logdata' => date('y-m-d'),
-            'logtexto' => $texto
-        );
-        $this->Auditoria_model->logar($dadosLogin);
-    }
 }
 
 

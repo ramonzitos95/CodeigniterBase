@@ -7,7 +7,7 @@ class Grade extends CI_Controller {
     {
         parent::__construct();
         $this->load->model(array('Curso_model', 'Disciplina_model', 'Turma_model', 'Grade_model', 'Auditoria_model'));
-        $this->load->library('form_validation');
+        $this->load->library(Aray('form_validation', 'Auditoria'));
     }
 
     public function index(){
@@ -60,22 +60,12 @@ class Grade extends CI_Controller {
         {
             If($cadastrado){
                 $texto = "Foi cadastrado a grade" . $codigoGrade;
-                $this->gravandolog($texto);
+                echo $this->Auditoria->gravandolog($texto);
                 redirect('Grade');
             }else{
                 $this->load->view('Error_view');
             }
         }
-    }
-
-    public function gravandoLog($texto)
-    {
-        $dadosLogin = array(
-            'loghora' => time(),
-            'logdata' => date('y-m-d'),
-            'logtexto' => $texto
-        );
-        $this->Auditoria_model->logar($dadosLogin);
     }
 
     public function Consultar()
@@ -149,7 +139,7 @@ class Grade extends CI_Controller {
         {
             If($atualizado){
                 $texto = "Foi cadastrado a grade" . $codigoGrade;
-                $this->gravandolog($texto);
+                echo $this->Auditoria->gravandolog($texto);
                 redirect('Grade');
             }else{
                 $this->load->view('Error_view');

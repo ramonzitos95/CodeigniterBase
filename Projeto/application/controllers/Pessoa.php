@@ -8,11 +8,11 @@ class Pessoa extends CI_Controller
     {
         parent::__construct();
         $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
-        $this->load->model('Pessoa_model');
-        $this->load->model('Turma_model');
-        $this->load->model('Auditoria_model');
-        $this->load->model('cidades_model');
+        $this->load->library(array('form_validation','Auditoria'));
+        $this->load->model(array('Pessoa_model',
+                                'Turma_model',
+                                'Auditoria_model',
+                                'cidades_model'));
     }
 
     function index()
@@ -94,7 +94,7 @@ class Pessoa extends CI_Controller
             if($foiCadastradoPessoa)
             {
                 $textoLog = "Foi cadastrado a pessoa: " . $nome . " do tipo " . $tipousuario;
-                $this->gravandoLog($textoLog);
+                echo $this->Auditoria->gravandolog($textoLog);
                 echo ("<script>alert('Usuário: ' + $nome + ' foi cadastrado com sucesso' + ' do tipo ' + $tipousuario)</script>");
                 redirect('login');
             }
@@ -106,15 +106,7 @@ class Pessoa extends CI_Controller
 
     }
 
-    function gravandoLog($texto)
-    {
-        $dadosLogin = array(
-            'loghora' => time(),
-            'logdata' => date('y-m-d'),
-            'logtexto' => $texto
-        );
-        $this->Auditoria_model->logar($dadosLogin);
-    }
+
 
 
 }

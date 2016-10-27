@@ -8,7 +8,7 @@ class LoginAdm extends CI_Controller
     {
         parent::__construct();
         $this->load->helper('url', 'form');
-        $this->load->library('form_validation');
+        $this->load->library(array('form_validation','Auditoria'));
         $this->load->model('Login_model');
     }
 
@@ -27,7 +27,7 @@ class LoginAdm extends CI_Controller
         $usuario = $this->input->post('usuario');
         $senha = md5($this->input->post('senha'));
         $tipousuario = $this->input->post('tipousuario');
-        //echo $nome. ' - '. $senha;
+
 
         //Regras de validação
 
@@ -40,6 +40,10 @@ class LoginAdm extends CI_Controller
             $this->load->view('welcome_message');
         } else {
             if ($logado) { //se foi logado
+
+                $textoAuditoriaLogin = 'Usuário'. $usuario . 'logou com sucesso';
+
+                echo $this->Auditoria->gravandolog($textoAuditoriaLogin);
                 $this->session->set_userdata("usuario_logado", $usuario);
                 $this->session->set_userdata("id", $usuario);
                 $this->session->set_userdata("tipo_usuario", $tipousuario);
@@ -52,8 +56,4 @@ class LoginAdm extends CI_Controller
         }
     }
 
-    public function cadastrar()
-    {
-
-    }
 }

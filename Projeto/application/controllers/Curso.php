@@ -59,7 +59,7 @@ class Curso extends CI_Controller
 
         if ($cadastrado) {
             $textoLog = "Foi cadastrado o curso: " . $cursonome;
-            $this->gravandoLog($textoLog);
+            echo $this->Auditoria->gravandoLog($textoLog);
             redirect('Curso');
         } else {
             $this->load->view('Erro_view');
@@ -69,15 +69,7 @@ class Curso extends CI_Controller
 
     }
 
-    public function gravandoLog($texto)
-    {
-        $dadosLogin = array(
-            'loghora' => time(),
-            'logdata' => date('y-m-d'),
-            'logtexto' => $texto
-        );
-        $this->Auditoria_model->logar($dadosLogin);
-    }
+
 
     public function Consultar()
     {
@@ -115,7 +107,7 @@ class Curso extends CI_Controller
             //Gravando log
             $nome = $this->Curso_model->RetornaNomeCurso($deletado);
             $texto = "O curso " .  $nome->cursonome . " foi deletado";
-            //$this->Auditoria->gravandoLog($texto);
+            echo $this->Auditoria->gravandoLog($texto);
             echo '<script>alert("Curso excluido com sucesso")</script>';
             redirect('Menu');
         }

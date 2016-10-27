@@ -57,7 +57,7 @@ class Disciplina extends CI_Controller {
         if($cadastrado){
             //Gravando o log na base
             $textoLog = "Foi cadastrado a disciplina: " . $nome;
-            $this->gravandoLog($textoLog);
+            echo $this->Auditoria->gravandoLog($textoLog);
 
             redirect('Disciplina');
         }else{
@@ -70,15 +70,6 @@ class Disciplina extends CI_Controller {
         return $rData;
     }
 
-    public function gravandoLog($texto)
-    {
-        $dadosLogin = array(
-            'loghora' => time(),
-            'logdata' => date('y-m-d'),
-            'logtexto' => $texto
-        );
-        $this->Auditoria_model->logar($dadosLogin);
-    }
 
     public function Consulta()
     {
@@ -95,7 +86,7 @@ class Disciplina extends CI_Controller {
             //Gravando log
             $nome = $this->Disciplina_model->RetornaNomeDisciplina($id);
             $texto = "O curso " .  $nome->cursonome . " foi deletado";
-            //$this->Auditoria_model->gravandoLod($texto);
+            echo $this->Auditoria_model->gravandoLod($texto);
             echo '<script>alert("Curso excluido com sucesso")</script>';
             redirect('Disciplina/Consulta');
         }
