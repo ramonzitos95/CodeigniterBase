@@ -24,15 +24,30 @@ class LogArquivo
         else
         {
             $fp = fopen($arquivo, 'a');
-            fwrite($fp, $conteudo);
+                fwrite($fp, $conteudo);
         }
 
         fclose($fp);
     }
 
 
-    function lerArquivoLog(){
+    public function lerArquivoLog(){
+        //Definindo o ponteiro para o arquivo
+        $ponteiro = fopen("C:\\temp\\teste2.txt", "r");
 
+        //Abre o aruqivo .txt
+        while(!feof($ponteiro)) {
+            $linha = fgets($ponteiro, 4096);
+            //Imprime na tela o resultado
+            $this->pulaLinha();
+        }
+        //Fecha o arquivo
+        fclose($ponteiro);
+    }
+
+    public function pulaLinha(){
+        echo PHP_EOL;
+    }
 
 
 
