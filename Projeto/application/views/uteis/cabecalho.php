@@ -24,20 +24,19 @@
 <body class="imagemIndex">
 	<div class="row-fluid col-sm-offset-1">
 
-			<?php
+		<?php
                 echo 'Horário Atual:';
 				date_default_timezone_set('America/Sao_Paulo');
 				$date = date('Y-m-d H:i');
                 $nome = $this->session->userdata('usuario_logado');
 				echo '<div class="text-primary">' . $date . '</div>';
                 If($nome != null) {
-                    echo '<div class="col-sm-offset-10 text-info">' . 'Usuário Logado: ' . $nome . '</div>';
+                    echo '<div class="col-sm-offset-10 text-info">' . 'Usuário Logado: ' . $nome . '
+                    <a href="<?php echo base_url('login/Logout'); ?>" class="btn btn-default" > Logout </a>
+                    </div>';
 
 			?>
 
-            <a href="<?php echo base_url('login/Logout'); ?>" class="text-danger"> Logout </a>
-
-                <?php }?>
 
 
 
