@@ -49,7 +49,9 @@ class Login extends CI_Controller
 
                 //gravando login na auditoria
                 $textoAuditoriaLogin = "Usuário " . $usuario . " logou no sistema";
-
+                $this->load->library('logarquivo');
+                echo $this->logarquivo->gravaLog($textoAuditoriaLogin);
+                echo $this->logarquivo->lerArquivoLog();
                 $this->gravandoLog($textoAuditoriaLogin);
 
                 //Enviando email notificando que o usuário acessou o sistema
@@ -71,7 +73,7 @@ class Login extends CI_Controller
         }
     }
 
-    function Cadastrar()
+    public function Cadastrar()
     {
         $this->load->view('uteis/cabecalho');
 
@@ -133,7 +135,7 @@ class Login extends CI_Controller
     }
 
 
-    function logout()
+    public function logout()
     {
         session_destroy();
         session_unset();
@@ -141,7 +143,7 @@ class Login extends CI_Controller
         redirect('Login');
     }
 
-    function gravandoLog($texto)
+    public function gravandoLog($texto)
     {
         $dadosLogin = array(
             'loghora' => time(),
