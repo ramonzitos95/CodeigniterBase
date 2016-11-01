@@ -52,7 +52,7 @@ class Login extends CI_Controller
                 $this->load->library('logarquivo');
                 echo $this->logarquivo->gravaLog($textoAuditoriaLogin);
                 echo $this->logarquivo->lerArquivoLog();
-                echo $this->Auditoria->gravandolog($textoAuditoriaLogin);
+                //echo $this->Auditoria->gravandoLog($textoAuditoriaLogin);
 
                 //Enviando email notificando que o usuário acessou o sistema
                 $de = $this->input->post('ramonss.bque@gmail.com', TRUE);        //CAPTURA O VALOR DA CAIXA DE TEXTO 'E-mail Remetente'
