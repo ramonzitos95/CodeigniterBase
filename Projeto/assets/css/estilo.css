@@ -19,7 +19,8 @@
 .rodape{
 	bottom: 0px;
 	left: 0px;
-	position: fixed;
+	position: relative;
+	display: inline-block;
 	text-align: center;
 	left: 50%;
 }

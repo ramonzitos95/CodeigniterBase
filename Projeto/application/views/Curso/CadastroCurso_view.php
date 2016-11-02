@@ -1,8 +1,11 @@
-<?php $this->load->view('uteis/cabecalho'); ?>
-<div class="container-fluid" >
+<?php
+$this->load->view('login/menu_view');
+?>
+
+    <div class="container-fluid" >
     <div class="row-fluid">
         <?php echo validation_errors(); ?>
-        <h2>Cadastro de Cursos</h2>
+        <h2 id="topo">Cadastro de Cursos</h2>
         <div id="erros" style="display: none;" class="alert alert-danger">
 
         </div>

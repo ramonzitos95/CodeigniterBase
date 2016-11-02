@@ -59,7 +59,7 @@ class Curso extends CI_Controller
 
         if ($cadastrado) {
             $textoLog = "Foi cadastrado o curso: " . $cursonome;
-            echo $this->Auditoria->gravandoLog($textoLog);
+            //echo $this->Auditoria->gravandoLog($textoLog);
             redirect('Curso');
         } else {
             $this->load->view('Erro_view');

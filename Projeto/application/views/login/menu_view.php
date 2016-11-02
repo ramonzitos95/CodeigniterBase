@@ -57,4 +57,3 @@
             </div><!-- /.container-fluid -->
         </nav>
     </div>
-<?php  $this->load->view('uteis/rodape'); ?>

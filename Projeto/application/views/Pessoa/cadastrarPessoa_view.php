@@ -7,8 +7,11 @@ $this->load->view('uteis/cabecalho');
 
     <div class="row-fluid">
         <?php echo validation_errors(); ?>
-        <h2>Cadastro de Pessoas</h2>
-        <form action="<?php echo base_url('Pessoa/cadastro'); ?>" method="post">
+        <h2 div="topo">Cadastro de Pessoas</h2>
+        <div class="alert alert-info" id="erros" style="display: none">
+
+        </div>
+        <form action="<?php echo base_url('Pessoa/cadastro'); ?>" id="form" method="post">
             <div class="form-group col-md-12">
                 <label for="turma">Turma</label>
                 <?php
@@ -109,7 +112,7 @@ $this->load->view('uteis/cabecalho');
             <a href="<?php echo base_url('Login'); ?>" class="alert-link">Logout</a>
         </div>
     </div>
-
+    <script src="<?php echo base_url('assets/js/pessoa.js'); ?>"></script>
     <script type="text/javascript">
 
         $("#cep").blur(function () {

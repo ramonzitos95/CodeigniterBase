@@ -1,5 +1,5 @@
 
-	<div class="rodape row-fluid">
+	<div class="container-fluid rodape">
             <footer>
 
                 <address>

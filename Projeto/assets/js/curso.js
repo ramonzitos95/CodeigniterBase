@@ -2,9 +2,9 @@
  * Created by Usuario on 01/11/2016.
  */
 $(document).ready(function () {
-    $("#form").submit(function (event){
-        event.preventDefault();
-
+    document.getElementById("erros").style.display = "none";
+    $("#form").submit(function (event) {
+        console.log(event.preventDefault());
         var cursonome = document.getElementById("cursonome").value;
         var cargahoraria = document.getElementById("cargahoraria").value;
         var ementa = document.getElementById("ementa").value;
@@ -13,38 +13,52 @@ $(document).ready(function () {
         var situacao = document.getElementsByName("situacao").value;
         var errors = "";
 
-        if(cursonome == ""){
+        if (cursonome == "") {
             errors += "<h3>Erros:</h3><p>Nome do curso esta vazio.</p>";
         }
-        if(cargahoraria == 0){
+        if (cargahoraria == 0) {
             errors += "<p>Carga Horária deve ser maior que zero.</p>";
-        } else if(cargahoraria != parseInt(cargahoraria)) {
+        } else if (cargahoraria != parseInt(cargahoraria)) {
             errors += "<p>Favor informar um valor inteiro para a carga horária.</p>";
         }
-        if(ementa == ""){
+        if (ementa == "") {
             errors += "<p>Favor informe a ementa</p>";
         }
-        if(origem == ""){
+        if (origem == "") {
             document.getElementById("origem").value = "Uniasselvi";
         }
-        if(bibliografia == ""){
+        if (bibliografia == "") {
             errors += "<p>Informar a bibliografia.</p>";
         }
-        if(situacao == ""){
+        if (situacao == "") {
             errors += "<p>Marcar uma situação.</p>";
         }
-        if(errors != ""){
+        if (errors != "") {
             document.getElementById("erros").innerHTML = errors;
             $("#erros").fadeIn(1000);
-            setTimeout(function(){
+            setTimeout(function () {
                 $("#erros").fadeOut(1000);
             }, 5000);
+            window.location.hash = "#topo";
+            limparCampos();
+            document.getElementById("cursonome").focus();
             return false;
-        }else{
+
+        } else {
             $(this).submit();
         }
 
 
-
     });
 });
+
+function limparCampos(){
+    document.getElementById("cursonome").value = "";
+    document.getElementById("cargahoraria").value = "";
+    document.getElementById("ementa").value = "";
+    document.getElementById("bibliografia").value = "";
+    document.getElementsByName("origem").value = "";
+}
+
+
+
